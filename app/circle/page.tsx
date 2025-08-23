@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Rocket, Users, Star, Check, ArrowRight, ChevronRight, Handshake, Briefcase, MessageSquare, Award, Zap, UserCheck, BarChart2, Target, Lightbulb, TrendingUp, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import SectionHeader from '../../components/SectionHeader';
 import NeoPopButton from '../../components/ui/NeoPopButton';
 import ClientLayout from '../ClientLayout';
 import BuildersTeam from '../../components/BuildersTeam';
+import CircleHeroSection from '../../components/CircleHeroSection';
 
 const AdvisorsGrid = dynamic(() => import('../../components/AdvisorsGrid'), {
   ssr: false,
@@ -253,8 +254,9 @@ function BuildersCircle() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black">
-      <style jsx global>{`
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <style jsx global>{
+        `
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -266,48 +268,8 @@ function BuildersCircle() {
           }
         }
       `}</style>
+      <CircleHeroSection />
       <main className="relative">
-        {/* Hero Section */}
-        <section className="relative py-32 overflow-hidden z-10">
-          <div className="container mx-auto px-4 relative">
-            <div className="max-w-4xl mx-auto text-center relative">
-              <div className="inline-flex items-center px-4 py-1.5 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-yellow-400 text-xs font-bold uppercase tracking-wider mb-6 z-20">
-                A TBC INITIATIVE
-              </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-center">
-                <span className="text-yellow-400">The Builders Circle</span> <br />
-                <span className="text-xl md:text-2xl font-normal text-gray-300 mt-4 block">Where Leaders Build Together</span>
-              </h1>
-              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                A peer-driven business community for founders and senior professionals to connect, exchange opportunities, and solve real business challenges — enabled by expert advisors and strategic partners.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-6">
-                <NeoPopButton
-                  as="link"
-                  href="https://nas.io/tbc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="primary"
-                  size="lg"
-                >
-                  Register for The Circle
-                </NeoPopButton>
-                <Link href="/advisors" className="block">
-                  <NeoPopButton
-                    as="button"
-                    variant="secondary"
-                    size="lg"
-                    className="flex items-center gap-2 w-full"
-                  >
-                    List of advisors
-                    <ChevronRight className="w-5 h-5" />
-                  </NeoPopButton>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* About The Circle Section */}
         <section className="py-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-gray-900/80"></div>

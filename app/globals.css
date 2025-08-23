@@ -427,6 +427,180 @@ body {
   background: rgba(var(--neopop-primary), 0.5);
 }
 
+/* Circle Hero Section - NeoPop Styling */
+.neopop-card {
+  @apply relative overflow-hidden transition-all duration-300 ease-in-out;
+  background: #000;
+  border: 2px solid #FFD700;
+  box-shadow: 4px 4px 0 0 #FFD700;
+  transform: translate(-2px, -2px);
+  transition: all 0.2s ease;
+}
+
+.neopop-card:hover {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0 0 #FFD700;
+}
+
+.neopop-card.-style-1 {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+  border-color: #FFD700;
+}
+
+.neopop-card.-style-2 {
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  border-color: #FFC000;
+}
+
+.neopop-card.-style-3 {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+  border-color: #FFA500;
+}
+
+.neopop-card.-style-4 {
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  border-color: #FF8C00;
+}
+
+.neopop-card.-top {
+  @apply row-span-2;
+}
+
+.neopop-card.-bottom {
+  @apply row-span-1;
+}
+
+.neopop-card.-overlay::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent;
+  z-index: 1;
+}
+
+.neopop-card .content-wrapper {
+  @apply relative z-10;
+}
+
+/* NeoPop Text Effects */
+.neopop-text {
+  text-shadow: 2px 2px 0 #FFD700, -2px -2px 0 #FFD700, 2px -2px 0 #FFD700, -2px 2px 0 #FFD700;
+  letter-spacing: -0.5px;
+}
+
+.neopop-text-shadow {
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+/* NeoPop Button */
+.neopop-btn {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded font-medium transition-all duration-200;
+  background: #000;
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  box-shadow: 2px 2px 0 0 #FFD700;
+  transform: translate(-2px, -2px);
+}
+
+.neopop-btn:hover {
+  transform: translate(0, 0);
+  box-shadow: 1px 1px 0 0 #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.neopop-btn.-yellow {
+  background: #FFD700;
+  color: #000;
+  font-weight: 600;
+}
+
+.neopop-btn.-yellow:hover {
+  background: #FFC000;
+}
+
+.neopop-btn.-small {
+  @apply px-3 py-1 text-sm;
+}
+
+.neopop-btn.-medium {
+  @apply px-5 py-2 text-base;
+}
+
+/* Grid Item Hover Effects */
+.neopop-card.-overlay:hover::after {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+}
+
+/* Grid Layout */
+.grid-cols-4 > .business-card:nth-child(1) {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.grid-cols-4 > .business-card:nth-child(2) {
+  grid-column: 3 / 5;
+  grid-row: 1 / 2;
+}
+
+.grid-cols-4 > .business-card:nth-child(3) {
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
+}
+
+.grid-cols-4 > .business-card:nth-child(4) {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+}
+
+.grid-cols-4 > .business-card:nth-child(5) {
+  grid-column: 3 / 4;
+  grid-row: 3 / 5;
+}
+
+.grid-cols-4 > .business-card:nth-child(6) {
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+}
+
+.grid-cols-4 > .business-card:nth-child(7) {
+  grid-column: 1 / 3;
+  grid-row: 4 / 5;
+}
+
+.grid-cols-4 > .business-card:nth-child(8) {
+  grid-column: 4 / 5;
+  grid-row: 4 / 5;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
 /* NeoPop Button Base Styles */
 .neopop-btn {
   /* Reset button styles */
