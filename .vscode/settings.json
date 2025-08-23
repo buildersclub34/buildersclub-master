@@ -1,0 +1,13 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "editor.quickSuggestions.strings": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  },
+  "json.schemaDownload.enable": false,
+  "json.schemas": [],
+  "json.validate.enable": false
+}
