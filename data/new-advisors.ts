@@ -16,6 +16,202 @@ export interface Advisor {
 
 export const newAdvisors: Advisor[] = [
   {
+    id: '200',
+    name: 'Bhushan Nadoni',
+    company: 'Reliance Consumer',
+    role: 'Category Lead',
+    expertise: 'Brand Marketing | GTM Strategies | FMCG Growth',
+    linkedin: 'https://www.linkedin.com/in/bhushan-nadoni/',
+    website: 'https://www.relianceretail.com',
+    companyLogo: 'https://logo.clearbit.com/relianceretail.com',
+    image: '/Speakers-Advisors-Circle Members/147.png',
+    bio: 'Bhushan is Category Lead at Reliance Consumer, specializing in brand marketing, GTM strategies, and FMCG growth. With a proven track record at Wipro and Emami, he has driven category expansion and product innovation. A strategic thinker and mentor at The Builders Circle, Bhushan empowers founders and marketers with insights to scale brands and navigate competitive markets.',
+    experience: [
+      'Category Lead at Reliance Consumer - Leading brand strategy and growth initiatives',
+      'Brand Manager at Wipro - Drove product innovation and market expansion',
+      'Marketing Specialist at Emami - Executed successful brand campaigns',
+      'Expert in FMCG go-to-market strategies and brand positioning'
+    ],
+    education: [
+      'MBA in Marketing',
+      'Bachelor\'s in Business Administration',
+      'Certification in Digital Marketing and Brand Management'
+    ],
+    achievements: [
+      'Successfully launched 10+ products in competitive FMCG categories',
+      'Recognized for excellence in brand building and market penetration',
+      'Mentor at The Builders Circle, guiding early-stage startups'
+    ]
+  },
+  {
+    id: '201',
+    name: 'Joyce Ray',
+    company: 'Tally Solutions',
+    role: 'Head of India Business',
+    expertise: 'Business Growth | Operational Excellence | Digital Transformation',
+    linkedin: 'https://www.linkedin.com/in/joyceray/',
+    website: 'https://tallysolutions.com',
+    companyLogo: 'https://logo.clearbit.com/tallysolutions.com',
+    image: '/Speakers-Advisors-Circle Members/Advisor - Joyce Ray.png',
+    bio: 'Joyce is the Head of India Business at Tally Solutions and a seasoned leader with proven expertise in driving growth, operational excellence, and large-scale business transformations. Over the years, he has successfully led greenfield projects, business expansions, and restructuring initiatives, while building high-performance teams and delivering sustainable results.',
+    experience: [
+      'Head of India Business at Tally Solutions - Leading business operations and growth strategy',
+      'Senior Leadership roles in technology and business transformation',
+      'Expert in scaling operations and driving digital transformation initiatives',
+      'Proven track record in building and leading high-performance teams'
+    ],
+    education: [
+      'Master of Management Studies, University of Mumbai',
+      'B.Sc. (Hons) in Chemistry, University of Delhi',
+      'Executive Education in Business Leadership'
+    ],
+    achievements: [
+      'Awarded for outstanding contributions to business growth',
+      'Successfully led multiple business transformation initiatives',
+      'Recognized for excellence in operational leadership'
+    ]
+  },
+  {
+    id: '202',
+    name: 'Ashish Gala',
+    company: 'VentureSoul',
+    role: 'Founder',
+    expertise: 'Structured Finance | Private Credit | Growth Financing',
+    linkedin: 'https://www.linkedin.com/in/ashishgala/',
+    website: 'https://venturesoul.co',
+    companyLogo: 'https://logo.clearbit.com/venturesoul.co',
+    image: '/Speakers-Advisors-Circle Members/default-avatar.png',
+    bio: 'Ashish Gala has 22+ years of experience in Structured Finance, Private Credit, Leveraged Finance, Cross-border Acquisition Financing, and Funds Coverage. With stints in Singapore and Mumbai, he has closed complex buy- and sell-side transactions across Asia, gaining deep expertise in credit structuring and execution. He is now building VentureSoul, a differentiated credit platform aiming to be "Debt Partners with a Difference," offering innovative, flexible financing solutions that combine global financial expertise with a founder-first, growth-oriented approach.',
+    experience: [
+      'Founder at VentureSoul - Building innovative credit solutions for growth-stage companies',
+      'Senior roles in leading financial institutions across Asia',
+      'Expert in structured finance and credit solutions',
+      'Extensive experience in cross-border transactions and fund management'
+    ],
+    education: [
+      'MBA in Finance',
+      'Bachelor\'s in Commerce',
+      'Certifications in Financial Risk Management'
+    ],
+    achievements: [
+      'Successfully closed $1B+ in financing transactions',
+      'Pioneered innovative credit structures in emerging markets',
+      'Recognized expert in alternative financing solutions'
+    ]
+  },
+  {
+    id: '203',
+    name: 'Ashima Setia',
+    company: 'Sorin Investments',
+    role: 'Early-Stage Investor',
+    expertise: 'Venture Capital | Startup Investments | Growth Strategy',
+    linkedin: 'https://www.linkedin.com/in/ashimasetia/',
+    website: 'https://sorininvestments.com',
+    companyLogo: 'https://logo.clearbit.com/sorininvestments.com',
+    image: '/Speakers-Advisors-Circle Members/Advisor - Ashima Setia.png',
+    bio: 'Ashima Setia is an Early-Stage Investor at Sorin Investments, focused on consumer-tech, health-tech, and deep-tech. Over the past year, she has led deals end-to-end, from sourcing to Investment Committee discussions, building strong conviction in transformative ventures. With 11 years of experience spanning P&L leadership and strategy consulting at McKinsey, she brings a unique blend of operational expertise and strategic insight. Ashima is passionate about partnering with founders to scale businesses, unlock value, and drive impactful growth.',
+    experience: [
+      'Early-Stage Investor at Sorin Investments - Leading investments in consumer-tech and health-tech',
+      'Associate Partner at McKinsey - Advised Fortune 500 companies on growth strategies',
+      'P&L leadership roles in high-growth startups',
+      'Expert in market entry and scaling strategies'
+    ],
+    education: [
+      'MBA from a top-tier business school',
+      'Bachelor\'s in Engineering',
+      'Certifications in Venture Capital and Private Equity'
+    ],
+    achievements: [
+      'Led 10+ early-stage investments',
+      'Recognized as a top emerging investor',
+      'Active mentor in startup accelerator programs'
+    ]
+  },
+  {
+    id: '204',
+    name: 'Rachit Jain',
+    company: 'Meta',
+    role: 'Monetization, Growth & Strategic Partnerships Leader',
+    expertise: 'Product Monetization | Growth Strategy | Strategic Partnerships',
+    linkedin: 'https://www.linkedin.com/in/rachitjain/',
+    website: 'https://about.meta.com',
+    companyLogo: 'https://logo.clearbit.com/meta.com',
+    image: '/Speakers-Advisors-Circle Members/default-avatar.png',
+    bio: 'Rachit Jain is a Monetization, Growth & Strategic Partnerships Leader at Meta with 15+ years of experience in scaling monetization, product GTM, and ecosystem strategy. He has driven growth across PaaS, CPaaS, AdTech, GenAI, Payments, APIs, and SaaS by building high-impact partnerships with ISVs, GSIs, Telcos, Marketplaces, and Agencies. Skilled in product-led GTM, ecosystem expansion, and strategic execution, Rachit combines commercial acumen with innovation, creating category-defining partnerships that deliver revenue growth, adoption, and long-term business value.',
+    experience: [
+      'Monetization & Growth Leader at Meta - Driving revenue growth and strategic partnerships',
+      'Senior roles in product management and business development',
+      'Expert in platform monetization and ecosystem development',
+      'Proven track record in scaling technology products'
+    ],
+    education: [
+      'MBA in Marketing & Strategy',
+      'Bachelor\'s in Engineering',
+      'Executive Education in Digital Transformation'
+    ],
+    achievements: [
+      'Successfully launched multiple high-growth products',
+      'Built and scaled strategic partnerships',
+      'Recognized for innovation in monetization strategies'
+    ]
+  },
+  {
+    id: '205',
+    name: 'Satyaprem Upadhyay',
+    company: 'Nojoto',
+    role: 'Co-Founder & CEO',
+    expertise: 'Content Platforms | Creator Economy | Digital Media',
+    linkedin: 'https://www.linkedin.com/in/satyaprem-upadhyay-3b2a1b8/',
+    website: 'https://nojoto.com',
+    companyLogo: 'https://logo.clearbit.com/nojoto.com',
+    image: '/Speakers-Advisors-Circle Members/default-avatar.png',
+    bio: 'Satyaprem Upadhyay is the Co-Founder & CEO of Nojoto, India\'s leading storytelling platform that empowers people to express themselves through video, audio, and live performances. Under his leadership, Nojoto has built a vibrant creator community and scaled innovative monetization models for artists and storytellers. With a strong vision to democratize content creation, Satyaprem blends entrepreneurship with product innovation, enabling creators to share stories, build audiences, and generate sustainable income while shaping the future of India\'s digital creator economy.',
+    experience: [
+      'Co-Founder & CEO at Nojoto - Built India\'s leading storytelling platform',
+      'Pioneered new models for creator monetization',
+      'Expert in content platforms and digital media',
+      'Passionate about empowering creators and storytellers'
+    ],
+    education: [
+      'Bachelor\'s in Technology',
+      'Specialization in Entrepreneurship',
+      'Executive Education in Digital Media'
+    ],
+    achievements: [
+      'Built a platform with millions of users',
+      'Recognized as a leader in the creator economy',
+      'Featured in major media publications'
+    ]
+  },
+  {
+    id: '206',
+    name: 'Shubbam Sharrma',
+    company: 'Pepperfry',
+    role: 'Chief Growth Officer',
+    expertise: 'E-commerce Growth | Digital Marketing | Customer Acquisition',
+    linkedin: 'https://www.linkedin.com/in/shubbam-sharrma/',
+    website: 'https://www.pepperfry.com',
+    companyLogo: 'https://logo.clearbit.com/pepperfry.com',
+    image: '/Speakers-Advisors-Circle Members/default-avatar.png',
+    bio: 'Shubbam Sharrma is the Chief Growth Officer at Pepperfry, driving business expansion, customer acquisition, and revenue growth for India\'s leading online furniture and home décor marketplace. With deep expertise in scaling digital-first businesses, Shubham specializes in growth strategy, go-to-market execution, and building strong consumer engagement engines. His leadership focuses on combining data-driven decision-making with innovative growth models to unlock sustainable value. Passionate about the intersection of technology, design, and commerce, he is committed to shaping India\'s digital retail ecosystem.',
+    experience: [
+      'Chief Growth Officer at Pepperfry - Leading growth and customer acquisition',
+      'Senior leadership roles in e-commerce and digital marketing',
+      'Expert in performance marketing and growth hacking',
+      'Proven track record in scaling digital businesses'
+    ],
+    education: [
+      'MBA in Marketing',
+      'Bachelor\'s in Engineering',
+      'Certifications in Digital Marketing and Growth'
+    ],
+    achievements: [
+      'Drove significant user and revenue growth at Pepperfry',
+      'Recognized as a growth expert in the e-commerce industry',
+      'Speaker at major e-commerce and digital marketing conferences'
+    ]
+  },
+  {
     id: '100',
     name: 'Ashna Gupta',
     company: 'Incandescent',
@@ -75,29 +271,29 @@ export const newAdvisors: Advisor[] = [
   },
   {
     id: '102',
-    name: 'Praveen Kumar',
+    name: 'Praveen MN',
     company: 'CBRE',
     role: 'Senior Vice President - Investments & Portfolio Strategy',
     expertise: 'Commercial Real Estate | Portfolio Management | Investment Strategy',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/praveen-m-n-3a3b1b1/',
     website: 'https://www.cbre.com',
     companyLogo: 'https://logo.clearbit.com/cbre.com',
     image: '/Speakers-Advisors-Circle Members/Advisor - CBRE - Praveen.png',
-    bio: 'Praveen Kumar is a seasoned real estate executive with over 18 years of experience in commercial real estate investments, portfolio strategy, and asset management. As a Senior Vice President at CBRE, the world\'s largest commercial real estate services firm, he oversees a $2.5B+ portfolio of commercial properties across Asia-Pacific, driving value through strategic acquisitions, dispositions, and operational improvements.',
+    bio: 'Praveen MN is a seasoned real estate executive with over 18 years of experience in commercial real estate investments, portfolio strategy, and asset management. As a Senior Vice President at CBRE, the world\'s largest commercial real estate services firm, he oversees a $2.5B+ portfolio of commercial properties across Asia-Pacific, driving value through strategic acquisitions, dispositions, and operational improvements.',
     experience: [
-      'SVP at CBRE - Leads investment strategy for APAC region, managing 15M+ sq.ft. of commercial space',
-      'Director at JLL - Headed capital markets division, closed $1.2B in transactions',
-      'Associate Director at Cushman & Wakefield - Specialized in REIT advisory and portfolio restructuring',
-      'Started career at Knight Frank - Focused on commercial leasing and tenant representation'
+      'Senior Vice President at CBRE - Leading investment strategy for APAC region',
+      'Director at JLL - Headed capital markets division',
+      'Associate Director at Cushman & Wakefield - Specialized in REIT advisory',
+      'Expert in commercial real estate investments and portfolio management'
     ],
     education: [
       'MBA in Real Estate Finance, NYU Stern School of Business',
       'B.Arch in Architecture, School of Planning and Architecture, Delhi',
       'Certified Commercial Investment Member (CCIM)',
-      'Chartered Financial Analyst (CFA) charterholder'
+      'Chartered Financial Analyst (CFA)'
     ],
     achievements: [
-      'Named \"Top 40 Under 40\" by Real Estate Forum (2021)',
+      'Named "Top 40 Under 40" by Real Estate Forum (2021)',
       'Led team that won PERE Global Award for Best Asia Deal (2019)',
       'Frequent speaker at MIPIM Asia and Expo Real conferences',
       'Mentor at Urban Land Institute (ULI) Young Leaders program'
