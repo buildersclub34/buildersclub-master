@@ -6,8 +6,29 @@ export interface Builder {
   image: string;
   linkedin?: string;
   twitter?: string;
+  website?: string;
+  email?: string;
   description?: string;
-  tags?: string[];
+  bio?: string;
+  tags?: string | string[];
+  companyLogo?: string;
+  experience?: Array<{
+    role: string;
+    company: string;
+    duration: string;
+    description?: string;
+  }>;
+  education?: Array<{
+    degree: string;
+    institution: string;
+    year: string;
+  }>;
+  expertise?: string[];
+  socialLinks?: Array<{
+    platform: string;
+    url: string;
+    icon: React.ReactNode;
+  }>;
 }
 
 export const featuredBuilders: Builder[] = [

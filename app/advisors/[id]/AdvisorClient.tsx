@@ -184,12 +184,11 @@ export default function AdvisorClient({ advisorId, initialData }: AdvisorClientP
                   </div>
                 </NeoPopButton>
 
-                <NeoPopButton
-                  as="link"
-                  href="/circle/#join"
-                  variant="primary"
-                  size="lg"
-                  className="group"
+                <a
+                  href="https://tally.so/r/n9EBEX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-flex items-center justify-center font-bold text-center uppercase tracking-wider whitespace-nowrap px-8 py-3 text-lg rounded transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 will-change-transform min-w-fit hover:-translate-y-0.5 hover:translate-x-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transform -translate-x-1 -translate-y-1 border-b-4 border-r-4 bg-[#FFD700] hover:bg-[#FFC000] active:bg-[#FFD700] text-gray-900 border-[#D4A017] shadow-[4px_4px_0_0_rgba(0,0,0,0.9),6px_6px_0_0_rgba(0,0,0,0.5)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.9),4px_4px_0_0_rgba(0,0,0,0.5)] active:shadow-none group"
                 >
                   <div className="flex items-center gap-2">
                     <span>Become an Advisor</span>
@@ -208,7 +207,7 @@ export default function AdvisorClient({ advisorId, initialData }: AdvisorClientP
                       <path d="m9 18 6-6-6-6"></path>
                     </svg>
                   </div>
-                </NeoPopButton>
+                </a>
               </div>
             </div>
           </div>

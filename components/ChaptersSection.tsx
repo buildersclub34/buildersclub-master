@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import { ChevronRight } from 'lucide-react';
+import NeoPopButton from './ui/NeoPopButton';
 
 const cityData = [
   {
@@ -10,8 +12,8 @@ const cityData = [
     description: 'The tech and startup hub of India',
     color: 'from-blue-500 to-cyan-400',
     landmark: 'Vidhana Soudha',
-    image: '/images/cities/bangalore.jpg',
-    icon: '/images/cities/icons/bangalore.png'
+    image: '/City Icons/Bengaluru - India.png',
+    icon: '/City Icons/Bengaluru - India.png'
   },
   {
     id: 'delhi',
@@ -21,8 +23,8 @@ const cityData = [
     description: 'The business and political capital',
     color: 'from-purple-500 to-pink-500',
     landmark: 'India Gate',
-    image: '/images/cities/delhi.jpg',
-    icon: '/images/cities/icons/delhi.png'
+    image: '/City Icons/New Delhi ▪️India.png',
+    icon: '/City Icons/New Delhi ▪️India.png'
   },
   {
     id: 'mumbai',
@@ -32,8 +34,8 @@ const cityData = [
     description: 'The financial capital of India',
     color: 'from-amber-500 to-orange-500',
     landmark: 'Gateway of India',
-    image: '/images/cities/mumbai.jpg',
-    icon: '/images/cities/icons/mumbai.png'
+    image: '/City Icons/Mumbai ▪️India.png',
+    icon: '/City Icons/Mumbai ▪️India.png'
   },
   {
     id: 'pune',
@@ -43,14 +45,14 @@ const cityData = [
     description: 'The Oxford of the East',
     color: 'from-green-500 to-emerald-400',
     landmark: 'Shaniwar Wada',
-    image: '/images/cities/pune.jpg',
-    icon: '/images/cities/icons/pune.png'
+    image: '/City Icons/Pune India Vintage Travel Tourism Poster.png',
+    icon: '/City Icons/Pune India Vintage Travel Tourism Poster.png'
   }
 ];
 
 const ChaptersSection = () => {
   return (
-    <section className="w-full py-16 bg-gray-900 relative overflow-hidden">
+    <section className="w-full py-16 bg-black relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -67,39 +69,37 @@ const ChaptersSection = () => {
               key={city.id}
               className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-yellow-400/30 transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="relative h-40 overflow-hidden">
-                <div className={`absolute inset-0 bg-gradient-to-br ${city.color} opacity-30`}></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative w-24 h-24">
-                    <Image 
-                      src={city.icon} 
-                      alt={`${city.name} icon`} 
-                      layout="fill"
-                      objectFit="contain"
-                      className="drop-shadow-lg"
-                    />
-                  </div>
+              <div className="relative h-72 overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-br ${city.color} opacity-20`}></div>
+                <div className="absolute inset-0 flex items-center">
+                  <Image 
+                    src={city.image} 
+                    alt={`${city.name}`} 
+                    width={400}
+                    height={300}
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                  <h3 className="text-xl font-bold text-white">{city.name}</h3>
-                  <p className="text-sm text-yellow-400">{city.landmark}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 via-black/70 to-transparent">
+                  <h3 className="text-xl font-bold text-white mb-1">{city.name}</h3>
+                  <p className="text-sm text-yellow-400 font-medium">{city.landmark}</p>
                 </div>
               </div>
               
-              <div className="p-6">
-                <p className="text-gray-300 mb-4">{city.description}</p>
-                <div className="flex justify-between text-sm text-gray-400">
+              <div className="p-5 flex flex-col">
+                <p className="text-gray-300 mb-5 flex-grow text-sm leading-relaxed">{city.description}</p>
+                <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-700/50">
                   <div className="text-center">
                     <div className="text-lg font-bold text-white">{city.members}</div>
-                    <div>Members</div>
+                    <div className="text-xs text-gray-400 font-medium">Members</div>
                   </div>
                   <div className="text-center">
                     <div className="text-lg font-bold text-white">{city.events}</div>
-                    <div>Events</div>
+                    <div className="text-xs text-gray-400 font-medium">Events</div>
                   </div>
                   <div className="text-center">
                     <div className="text-lg font-bold text-yellow-400">Active</div>
-                    <div>Chapter</div>
+                    <div className="text-xs text-gray-400 font-medium">Chapter</div>
                   </div>
                 </div>
               </div>
@@ -108,12 +108,18 @@ const ChaptersSection = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-lg text-gray-300 mb-6">
+          <p className="text-lg text-gray-300 mb-8">
             Can&apos;t find your city? Help us start a chapter in your city!
           </p>
-          <button className="px-8 py-3 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-[4px_4px_0_0_rgba(0,0,0,0.9)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.9)] active:shadow-none">
+          <NeoPopButton
+            as="button"
+            variant="primary"
+            size="lg"
+            className="mx-auto px-10 py-4 text-lg font-bold tracking-wider"
+          >
             Start a Chapter
-          </button>
+            <ChevronRight className="w-5 h-5 ml-3" />
+          </NeoPopButton>
         </div>
       </div>
       

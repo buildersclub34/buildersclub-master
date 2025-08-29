@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Search, ChevronRight } from 'lucide-react';
+import { useMemo } from 'react';
+import { ChevronRight } from 'lucide-react';
 import { newAdvisors } from '../data/new-advisors';
+import '../app/styles/animations.css';
 import NeoPopButton from './ui/NeoPopButton';
 import AdvisorCard from './ui/AdvisorCard';
 import type { Advisor } from '@/data/advisors';
@@ -24,26 +25,12 @@ const advisors: Advisor[] = [
 ];
 
 export default function AdvisorsGrid() {
-  const [searchTerm, setSearchTerm] = useState('');
-  // Display all advisors without pagination
-
+  // Filter advisors to only include those with images
   const filteredAdvisors = useMemo(() => {
-    let result = [...advisors];
-    
-    if (searchTerm) {
-      const term = searchTerm.toLowerCase();
-      result = result.filter(
-        (advisor) =>
-          advisor.name.toLowerCase().includes(term) ||
-          advisor.company.toLowerCase().includes(term) ||
-          advisor.expertise.toLowerCase().includes(term) ||
-          advisor.role.toLowerCase().includes(term)
-      );
-    }
-    
-    // Always return only first 12 advisors
-    return result.slice(0, 12);
-  }, [searchTerm]);
+    return advisors
+      .filter(advisor => advisor.image && advisor.image.trim() !== '')
+      .slice(0, 12); // Limit to 12 advisors for better performance
+  }, []);
 
   const getInitials = (name: string) => {
     return name
@@ -67,39 +54,38 @@ export default function AdvisorsGrid() {
   };
 
   return (
-    <div className="w-full">
-      <div className="mb-8 max-w-2xl mx-auto">
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search advisors by name, company, or expertise..."
-            className="w-full pl-12 pr-6 py-3 bg-gray-900/50 border border-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-yellow-500/50 focus:border-transparent text-white placeholder-gray-400"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+    <div className="w-full overflow-hidden">
+      <div className="relative">
+        <div className="overflow-hidden">
+          <div className="flex space-x-6 py-4 animate-scroll">
+            {filteredAdvisors.map((advisor) => (
+              <div key={advisor.id} className="flex-shrink-0 w-72">
+                <AdvisorCard 
+                  advisor={advisor as Advisor} 
+                />
+              </div>
+            ))}
+            {filteredAdvisors.map((advisor) => (
+              <div key={`${advisor.id}-duplicate`} className="flex-shrink-0 w-72">
+                <AdvisorCard 
+                  advisor={advisor as Advisor} 
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredAdvisors.map((advisor) => (
-          <AdvisorCard 
-            key={advisor.id} 
-            advisor={advisor as Advisor} 
-          />
-        ))}
-      </div>
       
-      <div className="mt-12 text-center">
+      <div className="mt-16 text-center">
         <NeoPopButton 
           as="link"
           href="/advisors"
           variant="primary"
-          size="default"
-          className="mx-auto"
+          size="lg"
+          className="mx-auto px-8 py-4 text-lg"
         >
           See All Advisors
-          <ChevronRight className="w-4 h-4 ml-2" />
+          <ChevronRight className="w-5 h-5 ml-3" />
         </NeoPopButton>
       </div>
     </div>
