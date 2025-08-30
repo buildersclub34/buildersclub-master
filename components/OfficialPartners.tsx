@@ -9,11 +9,11 @@ import NeoPopButton from './ui/NeoPopButton';
 // Partner data with logo URLs and names
 const partners = [
   { id: 1, name: 'Partner 1', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/65-2.png' },
-  { id: 2, name: 'Partner 2', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/87.png' },
+  { id: 2, name: 'Nasscom', logo: '/logos brands/Nasscom-logo-svg.svg' },
   { id: 3, name: 'Partner 3', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/86.png' },
-  { id: 4, name: 'Partner 4', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/76.png' },
-  { id: 5, name: 'Partner 5', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/88.png' },
-  { id: 6, name: 'Partner 6', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/59-1.png' },
+  { id: 4, name: 'Nvidia', logo: '/logos brands/Nvidia_logo.svg' },
+  { id: 5, name: 'Dell', logo: '/logos brands/Dell_Logo.svg' },
+  { id: 6, name: 'Intel', logo: '/logos brands/intel-svgrepo-com.svg' },
   { id: 7, name: 'Partner 7', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/92.png' },
   { id: 8, name: 'Partner 8', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/91.png' },
   { id: 9, name: 'Partner 9', logo: 'https://thebuildersclub.me/wp-content/uploads/2024/09/77.png' },
@@ -33,9 +33,9 @@ export default function OfficialPartners() {
   }, []);
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
+    <section className="py-16 bg-black relative overflow-hidden">
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 overflow-hidden opacity-5">
         <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,white,transparent_70%)]"></div>
       </div>
       
@@ -43,9 +43,9 @@ export default function OfficialPartners() {
         {/* Section Header */}
         <div className="max-w-5xl mx-auto text-center mb-16">
           <SectionHeader
-            title="Trusted By"
-            highlightedText="Industry Leaders"
-            description="We're proud to collaborate with visionary companies who share our passion for innovation and excellence."
+            title="Our"
+            highlightedText="Partners"
+            description="A network of ecosystem partners who help in creating more visibility and adding value to our community."
             badgeText="Our Network"
             align="center"
             titleClassName="text-3xl md:text-4xl lg:text-5xl"
@@ -70,8 +70,11 @@ export default function OfficialPartners() {
                   src={partner.logo}
                   alt={partner.name}
                   fill
-                  className="object-contain p-2"
+                  className="object-contain p-2 filter brightness-0 invert"
                   sizes="(max-width: 640px) 50vw, (max-width: 768px) 33.33vw, (max-width: 1024px) 25vw, 20vw"
+                  style={{
+                    filter: 'brightness(0) invert(1)'
+                  }}
                 />
               </div>
             </div>

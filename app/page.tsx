@@ -1,11 +1,10 @@
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import BrandsSection from '@/components/BrandsSection';
+import EventsSection from '@/components/EventsSection';
 import Testimonials from '@/components/Testimonials';
 import InvestmentPartners from '@/components/InvestmentPartners';
-import PartnerInitiatives from '@/components/PartnerInitiatives';
 import OfficialPartners from '@/components/OfficialPartners';
-import UnfairAdvantages from '@/components/UnfairAdvantages';
 import CorporatesSection from '@/components/CorporatesSection';
 
 function Home() {
@@ -15,11 +14,10 @@ function Home() {
         <Hero />
         <About />
         <BrandsSection />
-        <UnfairAdvantages />
+        <EventsSection />
         <CorporatesSection />
         <Testimonials />
         <InvestmentPartners />
-        <PartnerInitiatives />
         <OfficialPartners />
       </main>
     </div>

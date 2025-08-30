@@ -16,10 +16,11 @@ import {
   Sparkles,
   Linkedin,
   Twitter,
-  ExternalLink
+  ExternalLink,
+  ChevronRight
 } from 'lucide-react';
+import EventsSection from '@/components/EventsSection';
 import { featuredBuilders } from '@/data/builders';
-import VideoSection from '../../components/VideoSection';
 import Link from 'next/link';
 import Image from 'next/image';
 import ClientLayout from '../ClientLayout';
@@ -35,6 +36,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/ta
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
 import { Separator } from '../../components/ui/separator';
 import { Badge } from '../../components/ui/badge';
+import PartnerDealsSection from '../../components/PartnerDealsSection';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -291,6 +293,7 @@ const EventCard = ({ event }: { event: Event }) => {
 };
 
 function ContentPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
@@ -327,347 +330,71 @@ function ContentPage() {
         </div>
       </section>
 
-      {/* Video Section */}
-      <VideoSection />
+      {/* Events Section */}
+      <EventsSection />
+      
+      {/* Partner Deals Section */}
+      <PartnerDealsSection />
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        {/* Featured Content Grid */}
-        <motion.div 
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 gap-8 mb-20"
-        >
-          {/* Podcasts Card */}
-          <motion.div 
-            variants={fadeInUp}
-            className="relative group bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl border border-gray-800 hover:border-yellow-400/30 transition-all duration-300 p-6 hover:shadow-lg hover:shadow-yellow-400/5"
-          >
-            <div className="absolute top-6 right-6 w-12 h-12 rounded-lg bg-yellow-400/10 flex items-center justify-center text-yellow-400">
-              <Mic size={24} />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Podcasts</h3>
-            <p className="text-gray-400 mb-6">Listen to insightful conversations with industry leaders and successful founders about their journey, challenges, and lessons learned.</p>
-            
-            <div className="space-y-4 mb-6">
-              {[
-                { 
-                  title: "Scaling to $10M ARR: Lessons from the Trenches", 
-                  duration: "52 min",
-                  date: "AUG 1, 2024"
-                },
-                { 
-                  title: "Raising Your First $1M: Investor Insights", 
-                  duration: "45 min",
-                  date: "JUL 25, 2024"
-                },
-                { 
-                  title: "Building Remote-First: Culture & Productivity", 
-                  duration: "38 min",
-                  date: "JUL 18, 2024"
-                }
-              ].map((item, i) => (
-                <div key={i} className="group/item flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
-                  <div className="w-2 h-2 mt-2 rounded-full bg-yellow-400 flex-shrink-0"></div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-white group-hover/item:text-yellow-400 transition-colors truncate">
-                      {item.title}
-                    </h4>
-                    <div className="flex items-center text-xs text-gray-500 mt-1">
-                      <span>{item.date}</span>
-                      <span className="mx-2">•</span>
-                      <span>{item.duration}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <Link 
-              href="/content/podcasts"
-              className="inline-flex items-center text-yellow-400 hover:text-yellow-300 font-medium group"
-            >
-              Browse All Episodes
-              <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-
-          {/* Resources Card */}
-          <motion.div 
-            variants={fadeInUp}
-            className="relative group bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl border border-gray-800 hover:border-yellow-400/30 transition-all duration-300 p-6 hover:shadow-lg hover:shadow-yellow-400/5"
-          >
-            <div className="absolute top-6 right-6 w-12 h-12 rounded-lg bg-yellow-400/10 flex items-center justify-center text-yellow-400">
-              <FileText size={24} />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Resources</h3>
-            <p className="text-gray-400 mb-6">Access our curated collection of templates, guides, and tools to help you build and grow your startup.</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-4 mb-6">
-              {[
-                { 
-                  title: "Pitch Deck Template", 
-                  type: "Template",
-                  icon: <FileText size={20} />,
-                  downloads: "1.2k"
-                },
-                { 
-                  title: "Cap Table 101", 
-                  type: "Guide",
-                  icon: <BookOpen size={20} />,
-                  downloads: "845"
-                },
-                { 
-                  title: "Hiring Playbook", 
-                  type: "Playbook",
-                  icon: <Users size={20} />,
-                  downloads: "1.5k"
-                }
-              ].map((item, i) => (
-                <div 
-                  key={i} 
-                  className="p-4 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-yellow-400/30 transition-all duration-300 hover:bg-yellow-400/5 group/item"
-                >
-                  <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-lg bg-yellow-400/10 flex items-center justify-center text-yellow-400 mr-3 group-hover/item:bg-yellow-400/20 transition-colors">
-                      {item.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-white group-hover/item:text-yellow-400 transition-colors truncate">
-                        {item.title}
-                      </h4>
-                      <div className="flex items-center justify-between mt-1">
-                        <span className="text-xs text-gray-400">{item.type}</span>
-                        <span className="text-xs text-yellow-400/70">{item.downloads}+ downloads</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <Link 
-              href="/content/resources"
-              className="inline-flex items-center text-yellow-400 hover:text-yellow-300 font-medium group"
-            >
-              Explore Resources
-              <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Latest Podcasts Section */}
-        <motion.section 
-          id="podcasts"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-20 pt-10 scroll-mt-20"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between mb-8">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2">
-                Latest <span className="text-yellow-400">Podcasts</span>
-              </h2>
-              <p className="text-gray-400">Tune in to our latest episodes with industry leaders</p>
-            </div>
-            <Link 
-              href="/content/podcasts"
-              className="flex items-center text-yellow-400 hover:text-yellow-300 font-medium mt-4 md:mt-0"
-            >
-              View All Episodes
-              <ArrowRight size={18} className="ml-2" />
-            </Link>
-          </div>
+      {/* FAQ Section */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <SectionHeader
+            badgeText="FAQ"
+            title="Frequently Asked"
+            highlightedText="Questions"
+            description="Find answers to common questions about our content, events, and community."
+            className="text-center"
+          />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="space-y-4 mt-12">
             {[
               {
-                title: "From Zero to Unicorn: A Founder's Journey",
-                description: "In this episode, we sit down with founders who've successfully scaled their startups to unicorn status.",
-                date: 'JUL 15, 2024',
-                duration: '52 min',
-                image: '/images/podcasts/unicorn-journey.jpg'
+                question: "How can I access the content?",
+                answer: "All our content is available on our website. Some exclusive content may require you to sign up or become a member."
               },
               {
-                title: "The Future of AI in Business",
-                description: "Exploring how AI is transforming industries and what it means for startups.",
-                date: 'JUL 8, 2024',
-                duration: '45 min',
-                image: '/images/podcasts/ai-future.jpg'
+                question: "Are the events free to attend?",
+                answer: "We offer both free and paid events. Check the event details for pricing information. Members often get discounts or free access to certain events."
               },
               {
-                title: "Fundraising in 2024: What's Changed?",
-                description: "VCs share insights on the current fundraising landscape and how to stand out.",
-                date: 'JUL 1, 2024',
-                duration: '48 min',
-                image: '/images/podcasts/fundraising-2024.jpg'
+                question: "Can I suggest topics for future content?",
+                answer: "Yes! We welcome suggestions for content topics. You can submit your ideas through our contact form or during our community calls."
               },
               {
-                title: "Building Remote-First Companies",
-                description: "Lessons from companies that have successfully built distributed teams.",
-                date: 'JUN 24, 2024',
-                duration: '38 min',
-                image: '/images/podcasts/remote-first.jpg'
+                question: "How can I become a speaker at your events?",
+                answer: "We're always looking for great speakers. Please reach out to us with your topic and experience, and we'll be in touch if it's a good fit for our audience."
+              },
+              {
+                question: "Do you offer certificates for attending events?",
+                answer: "Yes, we provide certificates of participation for most of our events. Please check the event details or contact us for more information."
               }
-            ].map((podcast, i) => (
-              <PodcastCard
-                key={i}
-                title={podcast.title}
-                description={podcast.description}
-                date={podcast.date}
-                duration={podcast.duration}
-                image={podcast.image}
-              />
+            ].map((faq, index) => (
+              <div 
+                key={index} 
+                className="border-b border-gray-800 pb-4 group"
+              >
+                <button
+                  className="w-full flex justify-between items-center text-left py-4 focus:outline-none"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                >
+                  <h3 className="text-lg font-medium text-white group-hover:text-yellow-400 transition-colors">
+                    {faq.question}
+                  </h3>
+                  <ChevronRight 
+                    className={`w-5 h-5 text-yellow-400 transform transition-transform ${openFaq === index ? 'rotate-90' : ''}`} 
+                  />
+                </button>
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-40' : 'max-h-0'}`}
+                >
+                  <p className="text-gray-300 pb-4">{faq.answer}</p>
+                </div>
+              </div>
             ))}
           </div>
-        </motion.section>
-
-
-        {/* Events Section */}
-        <motion.section 
-          id="events"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="py-20 bg-gradient-to-b from-black/50 to-gray-900/50 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white_10%,transparent_80%)]"></div>
-          </div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-yellow-400/10 text-yellow-400 text-sm font-medium mb-4">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Upcoming Events
-                </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
-                  Join Our <span className="text-yellow-400">Community Events</span>
-                </h2>
-                <p className="text-gray-400 text-lg">
-                  Connect with fellow builders, learn from experts, and grow your network through our curated events and workshops.
-                </p>
-              </div>
-              <Link 
-                href="/content/events"
-                className="mt-6 md:mt-0 inline-flex items-center px-5 py-2.5 rounded-lg bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 hover:bg-yellow-400/20 transition-colors group"
-              >
-                View All Events
-                <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  id: 1,
-                  title: "Founder Fireside Chat: Scaling to $10M ARR",
-                  date: "AUG 15, 2024",
-                  time: "6:00 PM - 8:00 PM",
-                  timezone: "EST",
-                  location: "Virtual Event",
-                  image: "/images/events/founder-chat.jpg",
-                  description: "Join us for an intimate conversation with founders who've successfully scaled their startups to $10M+ ARR. Learn their strategies, challenges, and key decisions that led to their success.",
-                  tags: ["Startup", "Scaling", "Founder Stories"],
-                  isFeatured: true,
-                  speakers: [
-                    { name: "Alex Johnson", company: "Nexus AI" },
-                    { name: "Sarah Chen", company: "BlockForge" }
-                  ]
-                },
-                {
-                  id: 2,
-                  title: "AI & Machine Learning Workshop",
-                  date: "AUG 22, 2024",
-                  time: "10:00 AM - 3:00 PM",
-                  timezone: "EST",
-                  location: "Tech Hub NYC",
-                  image: "/images/events/ai-workshop.jpg",
-                  description: "Hands-on workshop covering the latest in AI and machine learning. Bring your laptop and get ready to build! All skill levels welcome.",
-                  tags: ["AI/ML", "Workshop", "Hands-on"],
-                  isFeatured: false,
-                  speakers: [
-                    { name: "Dr. Michael Chen", company: "AI Research Lab" },
-                    { name: "Priya Patel", company: "ML Engineering Lead" }
-                  ]
-                },
-                {
-                  id: 3,
-                  title: "VC Office Hours with Sequoia",
-                  date: "SEP 5, 2024",
-                  time: "2:00 PM - 5:00 PM",
-                  timezone: "EST",
-                  location: "Sequoia Capital Office",
-                  image: "/images/events/vc-office-hours.jpg",
-                  description: "Exclusive opportunity to pitch your startup and get feedback from Sequoia Capital partners. Limited slots available.",
-                  tags: ["Fundraising", "VC", "Pitching"],
-                  isFeatured: true,
-                  speakers: [
-                    { name: "Jamie Lee", company: "Sequoia Capital" },
-                    { name: "David Kim", company: "Sequoia Capital" }
-                  ],
-                  link: "#"
-                },
-                {
-                  id: 4,
-                  title: "Pitch Night: Early Stage Startups",
-                  date: "AUG 22, 2024",
-                  time: "5:30 PM - 9:00 PM",
-                  timezone: "PST",
-                  location: "The Foundry, San Francisco",
-                  image: "/images/events/pitch-night.jpg",
-                  description: "Witness the next generation of startups pitch their ideas to a panel of experienced investors. Network with founders, investors, and tech enthusiasts.",
-                  tags: ["Pitching", "Networking", "Startups"],
-                  isFeatured: false,
-                  speakers: [
-                    { name: "Taylor Wilson", company: "YC Partner" },
-                    { name: "Jordan Lee", company: "A16Z" }
-                  ],
-                  link: "#"
-                },
-                {
-                  id: 5,
-                  title: "AI & The Future of Work",
-                  date: "SEP 12, 2024",
-                  time: "1:00 PM - 5:00 PM",
-                  timezone: "EST",
-                  location: "Virtual Event",
-                  image: "/images/events/ai-future-work.jpg",
-                  description: "Explore how AI is transforming the workplace and what it means for the future of jobs, skills, and productivity.",
-                  tags: ["AI", "Future of Work", "Productivity"],
-                  isFeatured: false,
-                  speakers: [
-                    { name: "Dr. Lisa Wong", company: "MIT Media Lab" },
-                    { name: "Marcus Chen", company: "OpenAI" }
-                  ],
-                  link: "#",
-                  featured: true
-                }
-              ].map((event, i) => (
-                <EventCard
-                  key={i}
-                  event={event}
-                />
-              ))}
-            </div>
-
-            <div className="mt-12 text-center">
-              <Link
-                href="/events"
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-black bg-yellow-400 hover:bg-yellow-300 transition-colors"
-              >
-                View All Events
-              </Link>
-            </div>
-          </div>
-        </motion.section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

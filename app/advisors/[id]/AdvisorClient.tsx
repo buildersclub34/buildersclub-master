@@ -151,6 +151,64 @@ export default function AdvisorClient({ advisorId, initialData }: AdvisorClientP
               </div>
             </div>
 
+            {/* FAQ Section */}
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold text-white text-center mb-8">
+                Frequently Asked <span className="text-yellow-400">Questions</span>
+              </h2>
+              <div className="space-y-4">
+                {[
+                  {
+                    question: "How can I book a meeting with this advisor?",
+                    answer: "Meetings with our advisors are exclusively available to Circle Members. You can join our Circle to get access to 1:1 sessions with our expert advisors."
+                  },
+                  {
+                    question: "What are the benefits of connecting with an advisor?",
+                    answer: "Our advisors provide valuable industry insights, mentorship, and guidance to help you navigate challenges and accelerate your growth. They can offer strategic advice, make introductions, and provide feedback on your ideas."
+                  },
+                  {
+                    question: "How are advisors selected for The Builders Club?",
+                    answer: "Advisors are carefully vetted based on their industry experience, expertise, and track record of success. We ensure they bring valuable knowledge and a commitment to supporting our community."
+                  },
+                  {
+                    question: "Can I become an advisor for The Builders Club?",
+                    answer: "Yes! We're always looking for experienced professionals to join our advisor network. If you're interested in becoming an advisor, please click the 'Become an Advisor' button below to apply."
+                  }
+                ].map((faq, index) => (
+                  <div key={index} className="border-b border-gray-800 pb-4">
+                    <button
+                      className="w-full flex justify-between items-center text-left py-4 focus:outline-none group"
+                      onClick={() => {
+                        const element = document.getElementById(`faq-${index}`);
+                        if (element) {
+                          element.classList.toggle('max-h-0');
+                          element.classList.toggle('max-h-40');
+                        }
+                      }}
+                    >
+                      <h3 className="text-lg font-medium text-white group-hover:text-yellow-400 transition-colors">
+                        {faq.question}
+                      </h3>
+                      <svg 
+                        className="w-5 h-5 text-yellow-400 transform transition-transform" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div 
+                      id={`faq-${index}`}
+                      className="overflow-hidden transition-all duration-300 max-h-0"
+                    >
+                      <p className="text-gray-300 pb-4">{faq.answer}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* CTA Section */}
             <div className="text-center mt-16 px-4">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Ready to Build Something Extraordinary?</h3>

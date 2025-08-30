@@ -191,12 +191,10 @@ const useColumnAnimation = (direction: 'up' | 'down' = 'up', speed: number) => {
 };
 
 export default function Testimonials() {
-  // First column - scroll up at normal speed
+  // All columns scroll up at the same speed
   const col1 = useColumnAnimation('up', 0.5);
-  // Second column - scroll down at slightly faster speed
-  const col2 = useColumnAnimation('down', 0.7);
-  // Third column - scroll up at slower speed
-  const col3 = useColumnAnimation('up', 0.3);
+  const col2 = useColumnAnimation('up', 0.5);
+  const col3 = useColumnAnimation('up', 0.5);
 
   // Split testimonials into three columns
   const column1 = testimonials.filter((_, i) => i % 3 === 0);

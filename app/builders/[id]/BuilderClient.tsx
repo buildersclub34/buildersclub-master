@@ -355,16 +355,77 @@ export default function BuilderClient({ builder }: BuilderClientProps) {
                   </div>
                 </div>
 
-                {/* Connect Button */}
+                {/* FAQ Section */}
+                <div className="lg:col-span-2 mt-8">
+                  <h2 className="text-2xl font-bold text-white mb-6">
+                    Frequently Asked <span className="text-yellow-400">Questions</span>
+                  </h2>
+                  <div className="space-y-4">
+                    {[
+                      {
+                        question: "How can I connect with this builder?",
+                        answer: "You can connect with this builder by clicking the 'Connect' button below. This will take you to their preferred contact method where you can reach out directly."
+                      },
+                      {
+                        question: "What kind of projects is this builder interested in?",
+                        answer: "Our builders are typically interested in innovative projects that align with their expertise. Review their experience and skills to see if your project might be a good fit."
+                      },
+                      {
+                        question: "How are builders selected for The Builders Club?",
+                        answer: "Builders are carefully vetted based on their experience, expertise, and contributions to the tech community. We look for individuals who are passionate about building and sharing knowledge."
+                      },
+                      {
+                        question: "Can I become a featured builder?",
+                        answer: "Yes! We're always looking for talented builders to feature. If you're interested in joining our community, please reach out to us through our contact page."
+                      }
+                    ].map((faq, index) => (
+                      <div key={index} className="border-b border-gray-800 pb-4">
+                        <button
+                          className="w-full flex justify-between items-center text-left py-4 focus:outline-none group"
+                          onClick={() => {
+                            const element = document.getElementById(`builder-faq-${index}`);
+                            if (element) {
+                              element.classList.toggle('max-h-0');
+                              element.classList.toggle('max-h-40');
+                            }
+                          }}
+                        >
+                          <h3 className="text-lg font-medium text-white group-hover:text-yellow-400 transition-colors">
+                            {faq.question}
+                          </h3>
+                          <svg 
+                            className="w-5 h-5 text-yellow-400 transform transition-transform" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        <div 
+                          id={`builder-faq-${index}`}
+                          className="overflow-hidden transition-all duration-300 max-h-0"
+                        >
+                          <p className="text-gray-300 pb-4">{faq.answer}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Join Circle Button */}
                 <NeoPopButton
                   as="link"
-                  href={safeSocialLinks[0]?.url || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full justify-center mt-6"
+                  href="/circle"
+                  className="w-full justify-center mt-6 bg-yellow-400 text-black hover:bg-yellow-300 transition-colors"
                 >
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  Connect with {builder.name.split(' ')[0]}
+                  <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  Join the Circle
                 </NeoPopButton>
               </div>
             </div>

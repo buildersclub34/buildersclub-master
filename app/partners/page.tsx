@@ -23,6 +23,8 @@ import { ProductsSection } from '@/components/products/ProductsSection';
 import NeoPopButton from '@/components/ui/NeoPopButton';
 import { SectionHeader } from '@/components/SectionHeader';
 import { useState } from 'react';
+import PartnersGrid from '@/components/PartnersGrid';
+import FloatingPartners from '@/components/FloatingPartners';
 
 // Types
 type Partner = {
@@ -347,7 +349,8 @@ export default function PartnersPage() {
   return (
     <div className="bg-black">
       {/* Hero Section */}
-      <section className="min-h-[calc(100vh-6rem)] flex items-center justify-center bg-black">
+      <section className="relative min-h-[calc(100vh-6rem)] flex items-center justify-center bg-black overflow-hidden">
+        <FloatingPartners />
         <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center">
           <div className="text-center max-w-3xl">
             <div className="inline-flex items-center px-6 py-3 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-yellow-400 text-sm font-medium mb-8">
@@ -407,6 +410,48 @@ export default function PartnersPage() {
         <div className="absolute -top-20 -right-20 w-96 h-96 bg-yellow-500/5 rounded-full filter blur-3xl"></div>
         <div className="absolute -bottom-32 -left-32 w-[40rem] h-[40rem] bg-yellow-500/5 rounded-full filter blur-3xl"></div>
         <div className="absolute top-1/2 -right-20 w-72 h-72 bg-purple-500/5 rounded-full filter blur-3xl"></div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-16 bg-black relative overflow-hidden">
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,white,transparent_70%)]"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section Header */}
+          <div className="max-w-5xl mx-auto text-center mb-16">
+            <div className="flex flex-col text-center items-center mb-16">
+              <div className="inline-flex items-center px-4 py-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-yellow-400 text-xs font-medium uppercase tracking-wider mb-4">
+                Our Network
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                Our <span className="text-yellow-400">Partners</span>
+              </h2>
+              <p className="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">
+                A network of ecosystem partners who help in creating more visibility and adding value to our community.
+              </p>
+            </div>
+          </div>
+          
+          <PartnersGrid />
+          
+          <div className="text-center mt-16">
+            <a 
+              href="/partner-registration" 
+              className="relative inline-flex items-center justify-center font-bold text-center uppercase tracking-wider whitespace-nowrap border-2 rounded transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed will-change-transform min-w-fit hover:-translate-y-0.5 hover:translate-x-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transform -translate-x-1 -translate-y-1 border-b-4 border-r-4 bg-[#FFD700] hover:bg-[#FFC000] active:bg-[#FFD700] text-gray-900 border-[#D4A017] px-6 py-2 text-lg group shadow-[4px_4px_0_0_rgba(0,0,0,0.9),6px_6px_0_0_rgba(0,0,0,0.5)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.9),4px_4px_0_0_rgba(0,0,0,0.5)] active:shadow-none"
+            >
+              <span className="flex items-center">
+                Become a Partner
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* CTA Section with NeoPop Theme */}

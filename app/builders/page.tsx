@@ -30,12 +30,21 @@ export default function BuildersPage() {
     if (!searchTerm.trim()) return circleBuilders;
     
     const term = searchTerm.toLowerCase().trim();
-    return circleBuilders.filter((builder: Builder) => 
-      builder.name.toLowerCase().includes(term) ||
-      (builder.company?.toLowerCase().includes(term) ?? false) ||
-      (builder.role?.toLowerCase().includes(term) ?? false) ||
-      (builder.tags?.some(tag => tag.toLowerCase().includes(term)) ?? false)
-    );
+    return circleBuilders.filter((builder: Builder) => {
+      // Check if tags is a string or array and search accordingly
+      const tagMatch = Array.isArray(builder.tags) 
+        ? builder.tags.some(tag => tag.toLowerCase().includes(term))
+        : typeof builder.tags === 'string' 
+          ? builder.tags.toLowerCase().includes(term)
+          : false;
+          
+      return (
+        builder.name.toLowerCase().includes(term) ||
+        (builder.company?.toLowerCase().includes(term) ?? false) ||
+        (builder.role?.toLowerCase().includes(term) ?? false) ||
+        tagMatch
+      );
+    });
   }, [searchTerm]);
 
   // Pagination

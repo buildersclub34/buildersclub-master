@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { events, getUpcomingEvents, getPastEvents } from '@/data/events';
-import { EventCard } from '@/components/EventCard';
+import EventCard from '@/components/EventCard';
 import { format } from 'date-fns';
 import { Search, Filter, X, Calendar, CalendarDays, MapPin } from 'lucide-react';
 import NeoPopButton from '@/components/ui/NeoPopButton';
+import PartnersGrid from '@/components/PartnersGrid';
 
 const EventsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -60,11 +61,48 @@ const EventsPage = () => {
 
   const eventHighlights = [
     '/Event Highlights/1.png',
+    '/Event Highlights/1748868254229.jpg',
     '/Event Highlights/4.jpg',
     '/Event Highlights/BOARD-ROOM-bangalore.png',
     '/Event Highlights/BUILDING-IN-TECH-CONFERENCE-1.png',
     '/Event Highlights/CXO-Leadership-Mixer-DELHI-NCR-2.png',
-    '/Event Highlights/IMG_5906-2048x1536.jpg'
+    '/Event Highlights/IMG_4994.jpg',
+    '/Event Highlights/IMG_5842-1-scaled-e1738634729297-2048x760.jpg',
+    '/Event Highlights/IMG_5906-2048x1536.jpg',
+    '/Event Highlights/IMG_5920-2048x1536.jpg',
+    '/Event Highlights/IMG_9649-2048x1536.jpg',
+    '/Event Highlights/WhatsApp-Image-2025-01-13-at-11.02.58-AM-1536x1153.jpeg',
+    '/Event Highlights/WhatsApp-Image-2025-01-25-at-5.03.52-PM-1024x768.jpeg',
+    '/Event Highlights/pravega-1-1024x576.png'
+  ];
+
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "How can I register for an event?",
+      answer: "You can register for any of our upcoming events by clicking on the 'Register Now' button on the event card. You'll be directed to a registration form where you can provide your details and complete the registration process."
+    },
+    {
+      question: "Are there any fees to attend the events?",
+      answer: "Some of our events are free to attend, while others may require a registration fee. The event details will clearly mention if there's any fee involved. We also offer early bird discounts for certain events, so make sure to register early!"
+    },
+    {
+      question: "Can I get a refund if I can't attend after registering?",
+      answer: "Our refund policy varies by event. Generally, we offer full refunds up to 48 hours before the event. Please check the specific event details for the refund policy, or contact our support team for assistance."
+    },
+    {
+      question: "Do you offer group discounts?",
+      answer: "Yes, we offer special group rates for teams or groups registering together. Please contact our events team at events@thebuildersclub.in for more information on group discounts and registration."
+    },
+    {
+      question: "How can I become a speaker at one of your events?",
+      answer: "We're always looking for passionate speakers to share their knowledge and experiences. Please send your speaking proposal along with your bio and topics to speakers@thebuildersclub.in. Our team will review your application and get back to you."
+    },
+    {
+      question: "Are your events available online?",
+      answer: "Many of our events are available both in-person and online. The event format will be clearly mentioned in the event details. For online events, you'll receive a Zoom or other platform link after registration."
+    }
   ];
 
   return (
@@ -179,12 +217,12 @@ const EventsPage = () => {
             {Object.entries(eventsByMonth).map(([monthYear, monthEvents]) => (
               <div key={monthYear} className="mb-16">
                 <div className="relative mb-8">
-                  <h2 className="text-3xl font-bold text-yellow-400 relative z-10 inline-block px-4 py-2 bg-black border-2 border-yellow-400 rounded-lg transform -rotate-1">
+                  <h2 className="text-2xl font-bold text-yellow-400 relative z-10 inline-block px-4 py-1 bg-black border-2 border-yellow-400 rounded-lg transform -rotate-1">
                     {monthYear}
                   </h2>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-transparent rounded-full"></div>
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-yellow-400 to-transparent rounded-full"></div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {monthEvents.map((event) => (
                     <EventCard key={event.id} event={event} />
                   ))}
@@ -193,10 +231,12 @@ const EventsPage = () => {
             ))}
           </>
         ) : (
-          <div className="text-center py-16 bg-gray-900/50 rounded-xl border-2 border-yellow-400/30 p-8">
-            <CalendarDays className="mx-auto h-16 w-16 text-yellow-400 mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-2">No events found</h3>
-            <p className="text-gray-300 mb-6">
+          <div className="text-center py-16 bg-gray-900/50 rounded-xl border-2 border-yellow-400/30 p-8 group hover:border-yellow-400/60 transition-colors duration-300">
+            <div className="bg-yellow-400/10 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <CalendarDays className="h-10 w-10 text-yellow-400 group-hover:scale-110 transition-transform" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">No events found</h3>
+            <p className="text-gray-300 mb-6 max-w-md mx-auto">
               {searchQuery || locationFilter !== 'all' || eventTypeFilter !== 'all'
                 ? 'Try adjusting your search or filter criteria.'
                 : `There are currently no ${showPastEvents ? 'past' : 'upcoming'} events scheduled.`}
@@ -273,6 +313,53 @@ const EventsPage = () => {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-6 py-2 bg-yellow-400/10 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-medium mb-4">
+              FAQ
+            </div>
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Frequently Asked <span className="text-yellow-400">Questions</span>
+            </h2>
+            <div className="w-24 h-1 bg-yellow-400 mx-auto mb-6"></div>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Find answers to common questions about our events, registration process, and more.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div 
+                key={index} 
+                className="border-b border-gray-800 pb-4"
+              >
+                <button
+                  className="w-full flex justify-between items-center text-left py-4 focus:outline-none group"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                >
+                  <h3 className="text-lg font-medium text-white group-hover:text-yellow-400 transition-colors">{faq.question}</h3>
+                  <svg 
+                    className={`w-5 h-5 text-yellow-400 transform transition-transform ${openFaq === index ? 'rotate-90' : ''}`} 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-40' : 'max-h-0'}`}
+                >
+                  <p className="text-gray-300 pb-4">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action */}
       <div className="bg-yellow-400 p-1 rounded-xl shadow-[8px_8px_0_0_#000] border-2 border-black transform hover:-translate-y-1 transition-transform duration-200">
         <div className="bg-black p-10 text-center rounded-lg border-2 border-black">
@@ -291,6 +378,48 @@ const EventsPage = () => {
         </div>
       </div>
       </div>
+      
+      {/* Partners Section */}
+      <section className="py-16 bg-black relative overflow-hidden">
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,white,transparent_70%)]"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section Header */}
+          <div className="max-w-5xl mx-auto text-center mb-16">
+            <div className="flex flex-col text-center items-center mb-16">
+              <div className="inline-flex items-center px-4 py-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-yellow-400 text-xs font-medium uppercase tracking-wider mb-4">
+                Our Network
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                Our <span className="text-yellow-400">Partners</span>
+              </h2>
+              <p className="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">
+                A network of ecosystem partners who help in creating more visibility and adding value to our community.
+              </p>
+            </div>
+          </div>
+          
+          <PartnersGrid />
+          
+          <div className="text-center mt-16">
+            <a 
+              href="#contact" 
+              className="relative inline-flex items-center justify-center font-bold text-center uppercase tracking-wider whitespace-nowrap border-2 rounded transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed will-change-transform min-w-fit hover:-translate-y-0.5 hover:translate-x-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transform -translate-x-1 -translate-y-1 border-b-4 border-r-4 bg-[#FFD700] hover:bg-[#FFC000] active:bg-[#FFD700] text-gray-900 border-[#D4A017] px-6 py-2 text-lg group shadow-[4px_4px_0_0_rgba(0,0,0,0.9),6px_6px_0_0_rgba(0,0,0,0.5)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.9),4px_4px_0_0_rgba(0,0,0,0.5)] active:shadow-none"
+            >
+              <span className="flex items-center">
+                Become a Partner
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

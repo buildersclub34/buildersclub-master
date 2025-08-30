@@ -300,17 +300,13 @@ export default function Hero() {
             </NeoPopButton>
             <NeoPopButton
               as="link"
-              href="https://www.youtube.com/@thebuildersclub"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/circle"
               variant="secondary"
               size="lg"
               className="flex items-center gap-2"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-              Watch on YouTube
+              <span className="text-2xl leading-none">•</span>
+              Become a Circle Member
             </NeoPopButton>
           </div>
 
@@ -379,8 +375,8 @@ export default function Hero() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 lg:gap-6">
               <AnimatedCounter value={75} label="Business Leaders" suffix="K+" />
               <AnimatedCounter value={250} label="Events" suffix="+" />
-              <AnimatedCounter value={20} label="Industry Experts" suffix="+" />
-              <AnimatedCounter value={100} label="Investors" suffix="+" />
+              <AnimatedCounter value={100} label="Advisors" suffix="+" />
+              <AnimatedCounter value={300} label="Investors" suffix="+" />
               <AnimatedCounter value={500} label="Businesses Empowered" suffix="+" />
             </div>
           </div>
@@ -394,8 +390,8 @@ export default function Hero() {
               {[
                 { value: "75K+", label: "Business Leaders" },
                 { value: "250+", label: "Events" },
-                { value: "20+", label: "Industry Experts" },
-                { value: "100+", label: "Investors" },
+                { value: "100+", label: "Advisors" },
+                { value: "300+", label: "Investors" },
                 { value: "500+", label: "Businesses Empowered" }
               ].map((stat, index) => (
                 <div 

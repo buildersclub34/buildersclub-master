@@ -121,8 +121,12 @@ export const getEventById = (id: string) => {
 };
 
 export const getUpcomingEvents = () => {
-  const today = new Date();
-  return events.filter(event => new Date(event.date) >= today);
+  // For testing, return all events regardless of date
+  return [...events];
+  
+  // For production, use this instead:
+  // const today = new Date();
+  // return events.filter(event => new Date(event.date) >= today);
 };
 
 export const getPastEvents = () => {
