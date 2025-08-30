@@ -70,7 +70,7 @@ export default function Header() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-7 xl:px-8 2xl:px-10 relative z-50">
-          <nav className="hidden lg:flex items-center justify-between w-full gap-4">
+          <nav className="hidden lg:flex items-center justify-between w-full gap-4" role="navigation" aria-label="Main navigation">
             {/* Logo */}
             <div className="flex-shrink-0 relative w-36 xl:w-40 h-12 xl:h-14">
               <Link href="/" className="block relative w-full h-full" aria-label="The Builders Club">
@@ -157,9 +157,10 @@ export default function Header() {
               </div>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-1.5 sm:p-2 rounded-lg hover:bg-white/10 active:bg-white/20 transition-all duration-200 active:scale-95 text-white"
+                className="p-1.5 sm:p-2 rounded-lg hover:bg-white/10 active:bg-white/20 transition-all duration-200 active:scale-95 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-gray-900"
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMenuOpen}
+                aria-haspopup="true"
                 aria-controls="mobile-menu"
               >
                 {isMenuOpen ? (
@@ -179,6 +180,7 @@ export default function Header() {
               isMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
             aria-hidden={!isMenuOpen}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             {/* Header with close button */}
             <div className="sticky top-0 z-50 flex items-center justify-between bg-gray-900/95 backdrop-blur-sm px-4 py-3 border-b border-gray-800">
@@ -189,7 +191,8 @@ export default function Header() {
                   fill
                   sizes="128px"
                   className="object-contain object-left"
-                  priority
+                  loading={isMenuOpen ? 'eager' : 'lazy'}
+                  priority={false}
                 />
               </div>
               <button
@@ -207,10 +210,10 @@ export default function Header() {
                 <div key={item.name} className="relative group">
                   <a
                     href={item.link}
-                    className={`flex items-center justify-between w-full px-5 py-4 text-lg font-medium transition-all duration-200 rounded-xl ${
+                    className={`flex items-center justify-between w-full px-5 py-4 text-lg font-medium transition-all duration-200 rounded-xl active:scale-[0.98] ${
                       pathname === item.link 
                         ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 shadow-lg shadow-yellow-500/5' 
-                        : 'text-gray-200 hover:bg-gray-800/80 border border-transparent hover:border-gray-700/50'
+                        : 'text-gray-200 hover:bg-gray-800/80 border border-transparent hover:border-gray-700/50 active:bg-gray-800/60'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={pathname === item.link ? 'page' : undefined}

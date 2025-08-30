@@ -41,17 +41,17 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-black text-white py-16 overflow-hidden border-t-2 border-yellow-500/20">
-      {/* NeoPop Background Elements */}
-      <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
-      <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-500/5 rounded-full filter blur-3xl floating"></div>
-      <div className="absolute bottom-10 right-10 w-64 h-64 bg-yellow-500/5 rounded-full filter blur-3xl floating" style={{ animationDelay: '2s' }}></div>
-      
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-yellow-500/5 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-yellow-500/5 rounded-full filter blur-3xl"></div>
-      <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-yellow-400/10 rounded-full filter blur-2xl"></div>
-      <div className="absolute -top-10 -right-10 w-80 h-80 bg-yellow-400/5 rounded-full filter blur-xl"></div>
+    <footer className="relative bg-black text-white py-16 overflow-hidden border-t-2 border-yellow-500/20" role="contentinfo" aria-label="Website footer">
+      {/* Background Elements - Using CSS for better performance */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-500/5 rounded-full filter blur-3xl floating"></div>
+        <div className="absolute bottom-10 right-10 w-64 h-64 bg-yellow-500/5 rounded-full filter blur-3xl floating" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-yellow-500/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-yellow-500/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-yellow-400/10 rounded-full filter blur-2xl"></div>
+        <div className="absolute -top-10 -right-10 w-80 h-80 bg-yellow-400/5 rounded-full filter blur-xl"></div>
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -59,7 +59,7 @@ export default function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-2">
               <div className="mb-8">
-                <Link href="/" className="inline-block">
+                <Link href="/" className="inline-block focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-transparent rounded">
                   <Image 
                     src="/images/builders-club-logo.png" 
                     alt="The Builders Club" 
@@ -67,6 +67,8 @@ export default function Footer() {
                     height={67}
                     className="h-auto w-auto max-h-20 object-contain"
                     priority
+                    loading="eager"
+                    fetchPriority="high"
                   />
                 </Link>
               </div>
@@ -77,14 +79,15 @@ export default function Footer() {
               <div className="space-y-4 mb-8">
                 <a 
                   href="mailto:partner@thebuildersclub.me" 
-                  className="group flex items-center text-yellow-400 hover:text-yellow-300 transition-colors"
+                  className="group flex items-center text-yellow-400 hover:text-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-transparent rounded px-1 -ml-1"
+                  aria-label="Email us at partner@thebuildersclub.me"
                 >
                   <Mail className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                   partner@thebuildersclub.me
                 </a>
                 
                 {/* Social Media Links */}
-                <div className="flex space-x-4 pt-2">
+                <div className="flex flex-wrap gap-4 pt-2" role="list" aria-label="Social media links">
                   {[
                     { icon: Twitter, url: 'https://twitter.com/buildersclubhq', label: 'Twitter' },
                     { icon: Linkedin, url: 'https://linkedin.com/company/buildersclubhq', label: 'LinkedIn' },
@@ -97,16 +100,16 @@ export default function Footer() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-yellow-400 transition-colors"
-                      aria-label={social.label}
+                      className="text-gray-400 hover:text-yellow-400 transition-colors p-1 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                      aria-label={`Follow us on ${social.label}`}
                     >
-                      <social.icon className="w-5 h-5 hover:scale-110 transition-transform" />
+                      <social.icon className="w-5 h-5 hover:scale-110 transition-transform" aria-hidden="true" />
                     </a>
                   ))}
                 </div>
               </div>
 
-              <div className="p-6 bg-black/30 border-2 border-yellow-400/20 rounded-xl shadow-[4px_4px_0_0_rgba(212,160,23,0.3)] hover:shadow-[6px_6px_0_0_rgba(212,160,23,0.4)] transition-shadow duration-300">
+              <div className="p-6 bg-black/30 border-2 border-yellow-400/20 rounded-xl shadow-[4px_4px_0_0_rgba(212,160,23,0.3)] hover:shadow-[6px_6px_0_0_rgba(212,160,23,0.4)] transition-all duration-300 focus-within:ring-2 focus-within:ring-yellow-400 focus-within:ring-offset-2 focus-within:ring-offset-transparent focus-within:outline-none">
                 <h4 className="text-yellow-400 font-bold mb-2 flex items-center">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   WE ARE FREE, BUT CURATED
@@ -117,7 +120,7 @@ export default function Footer() {
                 <p className="text-gray-300 text-sm mb-4">
                   Fill up the form, and you shall be approved if you fit the club profile.
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3" role="list" aria-label="Call to action buttons">
                   <Link href="/join">
                     <NeoPopButton 
                       className="text-sm px-6 py-2 whitespace-nowrap"
@@ -151,9 +154,9 @@ export default function Footer() {
             {/* Navigation Links */}
             <div>
             <div>
-              <h4 className="text-xl font-bold mb-6 flex items-center text-white">
+              <h3 className="text-xl font-bold mb-6 flex items-center text-white" id="footer-navigation-heading">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">Navigation</span>
-              </h4>
+              </h3>
               <ul className="space-y-3">
                 {[
                   { name: 'Home', link: '/' },
@@ -186,9 +189,9 @@ export default function Footer() {
 
             {/* Legal */}
             <div>
-              <h4 className="text-xl font-bold mb-6 flex items-center text-white">
+              <h3 className="text-xl font-bold mb-6 flex items-center text-white" id="legal-links-heading">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">Legal</span>
-              </h4>
+              </h3>
               <ul className="space-y-3">
                 {[
                   { name: 'Privacy Policy', link: '/privacy-policy' },
@@ -206,62 +209,64 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
 
-          {/* Bottom Bar */}
-          <div className="pt-12 border-t border-yellow-500/20">
-            <div className="flex flex-col items-center">
-              <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm">
-                <span className="text-gray-400 whitespace-nowrap">
-                  &copy; {new Date().getFullYear()} Builders Club. All rights reserved
-                </span>
-                <span className="text-gray-400 hidden sm:inline">|</span>
-                <span className="text-gray-400 whitespace-nowrap">
-                  Designed and Developed by{' '}
-                  <a 
-                    href="https://www.warpvision.in" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="font-bold text-yellow-400 hover:underline"
-                  >
-                    Warp Vision
-                  </a>
-                </span>
-                <span className="text-gray-400 hidden sm:inline">|</span>
-                <div className="flex items-center space-x-4">
-                  {[
-                    { name: 'Privacy Policy', link: '/privacy-policy' },
-                    { name: 'Terms', link: '/terms-conditions' },
-                    { name: 'Cookies', link: '/cookie-policy' },
-                  ].map((item, index) => (
-                    <span key={item.name} className="flex items-center">
-                      <Link 
-                        href={item.link}
-                        className="text-gray-400 hover:text-yellow-400 transition-colors duration-300 flex items-center group whitespace-nowrap"
+              {/* Bottom Bar */}
+              <div className="pt-12 border-t border-yellow-500/20">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                  <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm">
+                    <p className="text-gray-400"> {new Date().getFullYear()} The Builders Club. All rights reserved.</p>
+                    
+                    <span className="text-gray-400 hidden sm:inline">|</span>
+                    
+                    <span className="text-gray-400 whitespace-nowrap">
+                      Designed and Developed by{' '}
+                      <a 
+                        href="https://www.warpvision.in" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="font-bold text-yellow-400 hover:underline focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-transparent rounded px-1 -ml-1"
                       >
-                        {item.name}
-                        <span className="inline-block ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-                      </Link>
-                      {index < 2 && <span className="ml-4 text-gray-400 hidden sm:inline">•</span>}
+                        Warp Vision
+                      </a>
                     </span>
-                  ))}
+                    
+                    <span className="text-gray-400 hidden sm:inline">|</span>
+                    
+                    <div className="flex items-center justify-center flex-wrap gap-4 sm:gap-6">
+                      {[
+                        { name: 'Privacy Policy', link: '/privacy-policy' },
+                        { name: 'Terms', link: '/terms-conditions' },
+                        { name: 'Cookies', link: '/cookie-policy' },
+                      ].map((item, index) => (
+                        <span key={item.name} className="flex items-center">
+                          <Link 
+                            href={item.link}
+                            className="text-gray-400 hover:text-yellow-400 transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-transparent rounded px-1 -ml-1"
+                            aria-label={`View ${item.name}`}
+                          >
+                            {item.name}
+                          </Link>
+                          {index < 2 && <span className="mx-2 text-gray-400 hidden sm:inline">•</span>}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Back to top button */}
+                  <div className="mt-4 md:mt-0">
+                    <NeoPopButton
+                      onClick={scrollToTop}
+                      variant="secondary"
+                      size="default"
+                      className="group hover:-translate-y-0.5 hover:translate-x-0.5 transition-transform duration-200"
+                      aria-label="Back to top"
+                    >
+                      <span className="sr-only">Back to top</span>
+                      <ArrowUp className="w-4 h-4" aria-hidden="true" />
+                    </NeoPopButton>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Back to top button */}
-            <div className="mt-8 flex justify-center">
-              <NeoPopButton
-                onClick={scrollToTop}
-                variant="secondary"
-                size="default"
-                className="group hover:-translate-y-0.5 hover:translate-x-0.5 transition-transform duration-200"
-                aria-label="Back to top"
-              >
-                <span className="mr-2">Back to top</span>
-                <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-              </NeoPopButton>
             </div>
           </div>
         </div>

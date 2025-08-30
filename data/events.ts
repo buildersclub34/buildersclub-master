@@ -7,6 +7,7 @@ export interface Event {
   image: string;
   registrationLink: string;
   isPastEvent: boolean;
+  isFeatured?: boolean;
   description: string;
   about: string;
   eventType: 'investor-date' | 'conference' | 'networking' | 'board-meeting';
@@ -27,6 +28,7 @@ export const events: Event[] = [
     image: '/Events/A Date with JITO JIIF  Mumbai  TheBuildersClub.png',
     registrationLink: '#', // Add registration link if available
     isPastEvent: true,
+    isFeatured: true,
     eventType: 'investor-date',
     city: 'Mumbai',
     about: '4-5 founders get an opportunity to meet JITO at their office over coffee and conversations.',

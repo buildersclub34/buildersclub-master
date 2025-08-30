@@ -1,41 +1,93 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Event } from '@/data/events';
 import { format } from 'date-fns';
 
-export default function EventCard({ event }: { event: Event }) {
+interface EventCardProps {
+  event: Event & { isFeatured?: boolean };
+}
+
+export default function EventCard({ event }: EventCardProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
   const eventDate = new Date(event.date);
   const formattedDate = format(eventDate, 'MMM d');
   const dayOfWeek = format(eventDate, 'EEEE');
   
+  // Fallback image in case of error or missing image
+  const fallbackImage = '/images/event-placeholder.jpg';
+  const imageSrc = !imageError ? event.image : fallbackImage;
+
+  // Generate responsive image sizes
+  const generateSizes = (): string => {
+    return '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 400px';
+  };
+
+  // Handle image load complete
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
+
+  // Handle image error
+  const handleImageError = () => {
+    setImageError(true);
+    setIsLoading(false);
+  };
+
   return (
     <div className="group flex flex-col h-full bg-black rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[4px_4px_0_0_rgba(255,215,0,0.8)] border-2 border-yellow-400/20 hover:border-yellow-400/60 relative">
       {/* Glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
       
       {/* Image Container with gradient overlay - Full width */}
-      <div className="relative w-full h-48 overflow-hidden">
+      <div className="relative w-full h-48 overflow-hidden bg-gray-900/50">
+        {/* Loading state */}
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 animate-pulse">
+            <div className="w-12 h-12 border-4 border-yellow-400/30 border-t-yellow-400 rounded-full animate-spin"></div>
+          </div>
+        )}
+        
+        {/* Main Image */}
         <Image
-          src={event.image}
-          alt={event.title}
+          src={imageSrc}
+          alt={`${event.title} event`}
           fill
-          sizes="(max-width: 768px) 100vw, 400px"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          priority
+          sizes={generateSizes()}
+          className={`object-cover transition-all duration-500 ${
+            isLoading ? 'opacity-0' : 'opacity-100 group-hover:scale-105'
+          }`}
+          priority={!!event.isFeatured}
+          quality={80}
+          onLoadingComplete={handleImageLoad}
+          onError={handleImageError}
+          aria-hidden={isLoading}
         />
+        
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
         
         {event.isPastEvent && (
-          <div className="absolute top-3 right-3 bg-red-600/90 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm border border-red-300/30 shadow-sm">
+          <div 
+            className="absolute top-3 right-3 bg-red-600/90 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm border border-red-300/30 shadow-sm"
+            aria-label="Past Event"
+          >
             Past Event
           </div>
         )}
         
         {/* Date Badge */}
-        <div className="absolute bottom-3 left-3 bg-yellow-400 text-black font-bold text-center p-2 rounded-lg border-2 border-yellow-300 shadow-[3px_3px_0_0_rgba(0,0,0,0.2)]">
-          <div className="text-xl leading-none font-black">{format(eventDate, 'd')}</div>
-          <div className="text-xs uppercase tracking-wider">{format(eventDate, 'MMM')}</div>
+        <div 
+          className="absolute bottom-3 left-3 bg-yellow-400 text-black font-bold text-center p-2 rounded-lg border-2 border-yellow-300 shadow-[3px_3px_0_0_rgba(0,0,0,0.2)]"
+          aria-label={`Event date: ${formattedDate} ${format(eventDate, 'yyyy')}`}
+        >
+          <div className="text-xl leading-none font-black" aria-hidden="true">
+            {format(eventDate, 'd')}
+          </div>
+          <div className="text-xs uppercase tracking-wider" aria-hidden="true">
+            {format(eventDate, 'MMM')}
+          </div>
         </div>
       </div>
       

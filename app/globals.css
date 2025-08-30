@@ -4,14 +4,132 @@
 @tailwind utilities;
 /* stylelint-enable */
 
+/* Base typography and font settings */
+:root {
+  /* Fluid typography - scales between minimum and maximum viewport widths */
+  --min-width: 375px;
+  --max-width: 1440px;
+  --min-scale: 1.125;  /* 18px */
+  --max-scale: 1.25;   /* 20px */
+  
+  /* Calculate fluid font size */
+  --fluid-bp: calc((100vw - var(--min-width) / 16 * 1rem) / (var(--max-width) - var(--min-width)));
+  --fluid-text: calc(var(--min-scale) * 1rem + (var(--max-scale) - var(--min-scale)) * var(--fluid-bp) * 10);
+}
+
 /* Base font styles */
 body {
-  @apply antialiased text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100;
-  font-family: 'Poppins', sans-serif;
-  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'cv05' 1;
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased;
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'cv05' 1, 'ss01' 1, 'ss02' 1;
+  font-variation-settings: 'wght' 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: clamp(1.125rem, 0.75rem + 1vw, 1.25rem);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Typography scale */
+h1, .h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+  font-variation-settings: 'wght' 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+
+h2, .h2 {
+  @apply text-3xl md:text-4xl font-bold leading-tight tracking-tight;
+  font-variation-settings: 'wght' 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+h3, .h3 {
+  @apply text-2xl md:text-3xl font-bold leading-tight;
+  font-variation-settings: 'wght' 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h4, .h4 {
+  @apply text-xl md:text-2xl font-bold leading-tight;
+  font-variation-settings: 'wght' 600;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+h5, .h5 {
+  @apply text-lg md:text-xl font-semibold leading-tight;
+  font-variation-settings: 'wght' 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+h6, .h6 {
+  @apply text-base font-semibold leading-tight uppercase tracking-wider;
+  font-variation-settings: 'wght' 600;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraph styles */
+p {
+  @apply mb-4 text-gray-800 dark:text-gray-200;
+  line-height: 1.7;
+  max-width: 65ch;
+}
+
+.lead {
+  @apply text-xl md:text-2xl font-light text-gray-600 dark:text-gray-300 leading-relaxed;
+  max-width: 60ch;
+}
+
+/* Text utilities */
+.text-small {
+  @apply text-sm leading-relaxed;
+}
+
+.text-muted {
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+.text-accent {
+  @apply text-yellow-500 dark:text-yellow-400;
+}
+
+/* Responsive text sizing */
+@screen md {
+  html {
+    font-size: 102.5%;
+  }
+}
+
+@screen lg {
+  html {
+    font-size: 105%;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  
+  p, li, blockquote {
+    page-break-inside: avoid;
+  }
 }
 
 :root {

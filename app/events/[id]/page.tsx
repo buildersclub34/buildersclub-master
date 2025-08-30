@@ -180,9 +180,14 @@ export default function EventPage({ params }: { params: { id: string } }) {
                     rel="noopener noreferrer"
                     className="w-full"
                   >
-                    <NeoPopButton className="w-full py-3 text-lg">
+                    <NeoPopButton 
+                      className="w-full py-3 text-lg"
+                      rightIcon={
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                      }
+                      aria-label={event.isPastEvent ? 'View event details' : 'Register for this event'}
+                    >
                       {event.isPastEvent ? 'View Event' : 'Register Now'}
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </NeoPopButton>
                   </a>
                 </div>
