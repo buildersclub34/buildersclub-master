@@ -20,11 +20,18 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./components/*"],
-      "@/app/*": ["./app/*"],
-      "@/data/*": ["./data/*"],
-      "@/lib/*": ["./lib/*"]
+      "@/*": [
+        "./app/src/*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/app/*": [
+        "./app/src/app/*"
+      ],
+      "@/data/*": [
+        "./data/*"
+      ]
     },
     "plugins": [
       {

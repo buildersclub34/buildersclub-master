@@ -9,18 +9,10 @@ import SectionHeader from './SectionHeader';
 interface AnimatedCounterProps {
   value: number;
   label: string;
-  subLabel?: string;
   suffix?: string;
-  className?: string;
 }
 
-const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ 
-  value, 
-  label, 
-  subLabel,
-  suffix = '',
-  className = '' 
-}) => {
+const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value, label, suffix = '' }) => {
   const [count, setCount] = useState<number>(0);
   const [hasAnimated, setHasAnimated] = useState<boolean>(false);
   const counterRef = useRef<HTMLDivElement>(null);
@@ -72,21 +64,14 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   }, [value, hasAnimated]);
 
   return (
-    <div ref={counterRef} className={`relative group ${className}`}>
+    <div ref={counterRef} className="relative group">
       <div className="absolute -inset-1 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded-lg blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-      <div className="relative bg-black/80 backdrop-blur-sm rounded-lg p-3 sm:p-4 md:p-6 text-center border border-white/10 hover:border-[#FFD700]/30 transition-all duration-300 h-full flex flex-col justify-center">
-        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] to-[#FFA500] mb-1 sm:mb-2">
+      <div className="relative bg-black/80 backdrop-blur-sm rounded-lg p-6 text-center border border-white/10 hover:border-[#FFD700]/30 transition-all duration-300 h-full">
+        <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] to-[#FFA500] mb-2">
           {count.toLocaleString()}{suffix}
         </div>
-        <div className="space-y-0.5">
-          <div className="text-white/80 text-xs sm:text-sm md:text-base font-medium">
-            {label}
-          </div>
-          {subLabel && (
-            <div className="text-white/60 text-xs sm:text-sm font-medium">
-              {subLabel}
-            </div>
-          )}
+        <div className="text-white/80 text-sm md:text-base font-medium">
+          {label}
         </div>
       </div>
     </div>
@@ -98,7 +83,6 @@ interface MousePosition {
   y: number;
 }
 
-// Hero component with consistent spacing
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -170,101 +154,32 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-black">
-      {/* Background gradient */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-br from-yellow-900/20 via-black to-black pointer-events-none"
-        style={{
-          transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      />
-      
-      {/* Content container with consistent padding */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8">
-            <span className="block">Build the Future</span>
-            <span className="text-yellow-400">With Us</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 md:mb-12">
-            Empowering the next generation of builders, creators, and innovators with the tools, 
-            resources, and community they need to succeed.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/join" 
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-yellow-400 hover:bg-yellow-500 md:py-4 md:text-lg md:px-10 transition-colors duration-200"
-            >
-              Join Our Community
-            </Link>
-            <Link 
-              href="/about" 
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-transparent hover:bg-gray-900 md:py-4 md:text-lg md:px-10 transition-colors duration-200"
-            >
-              Learn More
-            </Link>
-          </div>
-          
-          {/* Stats section */}
-          <div 
-            ref={statsRef}
-            className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-0 transition-opacity duration-500"
-            style={{ opacity: isVisible ? 1 : 0 }}
-          >
-            <AnimatedCounter 
-              value={1000}
-              label="Community Members"
-              className="text-center"
-            />
-            <AnimatedCounter 
-              value={50}
-              label="Startups Supported"
-              className="text-center"
-            />
-            <AnimatedCounter 
-              value={10}
-              label="Investor Partners"
-              className="text-center"
-            />
-            <AnimatedCounter 
-              value={25}
-              label="Events Hosted"
-              className="text-center"
-            />
-          </div>
-        </div>
-      </div>
-      
-      {/* Decorative elements */}
-      <div 
-        className="absolute top-1/4 -right-20 w-64 h-64 bg-yellow-400/10 rounded-full filter blur-3xl"
-        style={{
-          transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
-          transition: 'transform 0.2s ease-out'
-        }}
-      />
-      <div 
-        className="absolute bottom-1/4 -left-20 w-96 h-96 bg-yellow-400/5 rounded-full filter blur-3xl"
-        style={{
-          transform: `translate(${mousePosition.x * -0.01}px, ${mousePosition.y * -0.01}px)`,
-          transition: 'transform 0.2s ease-out'
-        }}
-      />
-    </div>
+    <>
+      <style jsx global>{`
+        /* NeoPop Theme Variables - Gold & Black */
+        :root {
+          --neopop-primary: #FFD700; /* Gold */
+          --neopop-secondary: #000000; /* Black */
+          --neopop-accent: #FFC000; /* Darker Gold */
+          --neopop-dark: #121212; /* Dark Gray */
+          --neopop-light: #FFFFFF; /* White */
+        }
 
-        @media (min-width: 768px) {
-          .neopop-btn {
-            padding: 14px 32px;
-            letter-spacing: 2px;
-            border-width: 3px;
-            transform: translate(-4px, -4px);
-            box-shadow: 6px 6px 0 0 var(--neopop-secondary),
-                      8px 8px 0 0 var(--neopop-primary);
-            font-size: 1rem;
-          }
+        /* NeoPop Button Styles - Gold & Black */
+        .neopop-btn {
+          position: relative;
+          padding: 14px 32px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          border: 3px solid var(--neopop-secondary);
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all 0.15s ease;
+          transform: translate(-4px, -4px);
+          will-change: transform, box-shadow;
+          box-shadow: 6px 6px 0 0 var(--neopop-secondary),
+                    8px 8px 0 0 var(--neopop-primary);
         }
 
         .neopop-btn:hover {
@@ -341,7 +256,7 @@ export default function Hero() {
 
 
       <section 
-        className="relative min-h-[90vh] sm:min-h-screen bg-black text-white overflow-hidden pt-16 pb-12 sm:pt-24 md:pt-32 lg:pt-40"
+        className="relative min-h-screen bg-black text-white overflow-hidden pt-20 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24"
         style={{ opacity: isVisible ? 1 : 0 }}
       >
         {/* Video Background */}
@@ -352,42 +267,27 @@ export default function Hero() {
             loop 
             playsInline
             className="object-cover w-full h-full"
-            style={{
-              objectPosition: 'center',
-              minHeight: '100%',
-              minWidth: '100%',
-              width: 'auto',
-              height: 'auto',
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
           >
             <source src="/BG hero.webm" type="video/webm" />
-            <source src="/BG hero.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <div className="video-overlay"></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center justify-center h-full">
-          <div className="w-full max-w-6xl mx-auto text-center flex flex-col items-center mt-16 sm:mt-24 md:mt-32 lg:mt-40 xl:mt-48">
+          <div className="w-full max-w-6xl mx-auto text-center flex flex-col items-center mt-24 sm:mt-32 md:mt-40 lg:mt-48">
             {/* Main Heading */}
-            <div className="text-center mb-6 sm:mb-10 md:mb-12 max-w-5xl mx-auto px-2">
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight sm:leading-tight md:leading-none mb-3 sm:mb-4">
-                Empowering Business Leaders,{' '}
-                <span className="text-yellow-400 bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
-                  Everywhere!
-                </span>
+            <div className="text-center mb-8 sm:mb-12 max-w-5xl mx-auto">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight sm:leading-tight md:leading-none mb-4">
+                Empowering Business Leaders, <span className="text-yellow-400">Everywhere!</span>
               </h1>
-              <p className="text-sm xs:text-base sm:text-lg text-gray-300 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed">
+              <p className="text-sm xs:text-base sm:text-lg text-gray-300 max-w-2xl sm:max-w-3xl mx-auto px-2 sm:px-4">
                 Join a global network of CXOs, founders, working professionals, and investors shaping tomorrow&apos;s business
               </p>
             </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-8 sm:mb-12 z-10 w-full px-2">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-12 z-10 w-full">
             <NeoPopButton
               as="link"
               href="https://nas.io/tbc"
@@ -395,7 +295,6 @@ export default function Hero() {
               rel="noopener noreferrer"
               variant="primary"
               size="lg"
-              className="w-full sm:w-auto text-center justify-center"
             >
               Join the Club
             </NeoPopButton>
@@ -404,15 +303,15 @@ export default function Hero() {
               href="/circle"
               variant="secondary"
               size="lg"
-              className="flex items-center justify-center gap-2 w-full sm:w-auto text-center"
+              className="flex items-center gap-2"
             >
-              <span className="text-2xl leading-none hidden sm:inline">•</span>
-              <span>Become a Circle Member</span>
+              <span className="text-2xl leading-none">•</span>
+              Become a Circle Member
             </NeoPopButton>
           </div>
 
           {/* Social Icons */}
-          <div className="flex justify-center gap-4 sm:gap-6 mb-8 sm:mb-12 px-4">
+          <div className="flex justify-center gap-8 mb-12">
             <a 
               href="https://www.linkedin.com/company/thebuildersclub" 
               target="_blank" 
@@ -471,43 +370,44 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Combined Animated Stats Section */}
+          {/* Animated Metrics */}
+          <div className="w-full max-w-6xl mx-auto mt-16 px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 lg:gap-6">
+              <AnimatedCounter value={75} label="Business Leaders" suffix="K+" />
+              <AnimatedCounter value={250} label="Events" suffix="+" />
+              <AnimatedCounter value={100} label="Advisors" suffix="+" />
+              <AnimatedCounter value={300} label="Investors" suffix="+" />
+              <AnimatedCounter value={500} label="Businesses Empowered" suffix="+" />
+            </div>
+          </div>
+
+          {/* Stats */}
           <div 
             ref={statsRef}
-            className="w-full max-w-6xl mx-auto mt-8 sm:mt-16 px-2 sm:px-4 md:px-6 opacity-0"
+            className="w-full max-w-6xl mx-auto mt-12 px-4 sm:px-6 lg:px-8 opacity-0"
           >
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-              <AnimatedCounter 
-                value={75} 
-                label="Business Leaders" 
-                suffix="K+" 
-                className="bg-black/20 hover:bg-black/30"
-              />
-              <AnimatedCounter 
-                value={250} 
-                label="Events" 
-                suffix="+"
-                className="bg-black/20 hover:bg-black/30"
-              />
-              <AnimatedCounter 
-                value={100} 
-                label="Advisors" 
-                suffix="+" 
-                className="hidden sm:block bg-black/20 hover:bg-black/30"
-              />
-              <AnimatedCounter 
-                value={300} 
-                label="Investors" 
-                suffix="+" 
-                className="hidden md:block bg-black/20 hover:bg-black/30"
-              />
-              <AnimatedCounter 
-                value={500} 
-                label="Businesses" 
-                subLabel="Empowered" 
-                suffix="+" 
-                className="col-span-2 sm:col-span-1 md:col-auto bg-black/20 hover:bg-black/30"
-              />
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 lg:gap-6">
+              {[
+                { value: "75K+", label: "Business Leaders" },
+                { value: "250+", label: "Events" },
+                { value: "100+", label: "Advisors" },
+                { value: "300+", label: "Investors" },
+                { value: "500+", label: "Businesses Empowered" }
+              ].map((stat, index) => (
+                <div 
+                  key={index} 
+                  className="text-center group px-2 py-4 bg-black/20 rounded-lg hover:bg-black/30 transition-all duration-300"
+                  data-aos="fade-up"
+                  data-aos-delay={`${index * 100}`}
+                >
+                  <div className="text-4xl md:text-5xl lg:text-6xl font-black bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent mb-2 transition-all duration-300 group-hover:scale-105">
+                    {stat.value}
+                  </div>
+                  <div className="text-white/80 text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider px-1">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 

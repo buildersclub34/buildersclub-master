@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { events, getUpcomingEvents, getPastEvents } from '@/data/events';
 import EventCard from '@/components/EventCard';
 import { format } from 'date-fns';
-import { Search, Filter, X, Calendar, CalendarDays, MapPin, ArrowRight } from 'lucide-react';
+import { Search, Filter, X, Calendar, CalendarDays, MapPin } from 'lucide-react';
 import NeoPopButton from '@/components/ui/NeoPopButton';
 import PartnersGrid from '@/components/PartnersGrid';
 
@@ -146,32 +146,29 @@ const EventsPage = () => {
       <div className="container mx-auto px-4 py-8">
 
       {/* Filters */}
-      <div className="bg-yellow-400 p-0.5 sm:p-1 rounded-xl mb-8 sm:mb-12 shadow-[4px_4px_0_0_#000] sm:shadow-[6px_6px_0_0_#000] border-2 border-black">
-        <div className="bg-black p-4 sm:p-6 rounded-lg border-2 border-black">
-          <div className="flex flex-col space-y-4 sm:space-y-0 sm:space-x-4 sm:flex-row sm:items-center sm:justify-between">
-            {/* Search Bar */}
-            <div className="relative w-full sm:flex-1 sm:max-w-2xl">
+      <div className="bg-yellow-400 p-1 rounded-xl mb-12 shadow-[6px_6px_0_0_#000] border-2 border-black">
+        <div className="bg-black p-6 rounded-lg border-2 border-black">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="relative flex-1 max-w-2xl">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400" />
+                <Search className="h-5 w-5 text-yellow-400" />
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-3 py-2.5 sm:py-3 bg-gray-900 border-2 border-yellow-400 rounded-lg text-sm sm:text-base text-white placeholder-yellow-400/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-200"
+                className="block w-full pl-10 pr-3 py-3 bg-gray-900 border-2 border-yellow-400 rounded-lg leading-5 text-white placeholder-yellow-400/70 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 sm:text-sm transition-all duration-200"
                 placeholder="Search events..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             
-            {/* Filter Controls */}
-            <div className="grid grid-cols-2 gap-3 w-full sm:w-auto sm:flex sm:flex-nowrap">
-              {/* Location Filter */}
-              <div className="relative w-full">
+            <div className="flex flex-wrap gap-3">
+              <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
-                  <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-yellow-400" />
+                  <MapPin className="h-4 w-4 text-yellow-400" />
                 </div>
                 <select
-                  className="appearance-none w-full bg-gray-900 pl-8 sm:pl-10 pr-6 sm:pr-8 py-2.5 sm:py-3 border-2 border-yellow-400 rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 cursor-pointer"
+                  className="appearance-none bg-gray-900 pl-10 pr-8 py-3 border-2 border-yellow-400 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 cursor-pointer"
                   value={locationFilter}
                   onChange={(e) => setLocationFilter(e.target.value)}
                 >
@@ -184,13 +181,12 @@ const EventsPage = () => {
                 </select>
               </div>
               
-              {/* Event Type Filter */}
-              <div className="relative w-full">
+              <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
-                  <Filter className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-yellow-400" />
+                  <Filter className="h-4 w-4 text-yellow-400" />
                 </div>
                 <select
-                  className="appearance-none w-full bg-gray-900 pl-8 sm:pl-10 pr-6 sm:pr-8 py-2.5 sm:py-3 border-2 border-yellow-400 rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 cursor-pointer"
+                  className="appearance-none bg-gray-900 pl-10 pr-8 py-3 border-2 border-yellow-400 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 cursor-pointer"
                   value={eventTypeFilter}
                   onChange={(e) => setEventTypeFilter(e.target.value)}
                 >
@@ -202,16 +198,10 @@ const EventsPage = () => {
                   ))}
                 </select>
               </div>
-            </div>
               
               <NeoPopButton
                 onClick={() => setShowPastEvents(!showPastEvents)}
                 className="px-6 py-3 text-sm"
-                variant="secondary"
-                rightIcon={
-                  <CalendarDays className="w-4 h-4 ml-1.5" aria-hidden="true" />
-                }
-                aria-label={showPastEvents ? 'Show upcoming events' : 'Show past events'}
               >
                 {showPastEvents ? 'Show Upcoming' : 'Show Past'}
               </NeoPopButton>
@@ -258,13 +248,7 @@ const EventsPage = () => {
                   setLocationFilter('all');
                   setEventTypeFilter('all');
                 }}
-                variant="secondary"
-                size="sm"
-                leftIcon={
-                  <X className="w-4 h-4 mr-1.5" aria-hidden="true" />
-                }
                 className="px-6 py-3"
-                aria-label="Clear all filters"
               >
                 Clear all filters
               </NeoPopButton>
@@ -314,15 +298,17 @@ const EventsPage = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <NeoPopButton 
-            className="mx-auto"
-            variant="secondary"
-            rightIcon={
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-            }
-            aria-label="View all event highlights"
-          >
+          <NeoPopButton className="mx-auto">
             View All Highlights
+            <svg 
+              className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </NeoPopButton>
         </div>
       </div>
@@ -381,38 +367,36 @@ const EventsPage = () => {
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
             Want to host your next event at our venue or partner with us? Get in touch to discuss exciting opportunities.
           </p>
-          <NeoPopButton 
-            as="link"
-            href="/contact"
-            className="px-8 py-4 text-lg"
-            rightIcon={
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-            }
-            aria-label="Contact us about event hosting or partnerships"
-          >
-            Contact Us
-          </NeoPopButton>
+          <Link href="/contact" className="inline-block">
+            <NeoPopButton className="px-8 py-4 text-lg">
+              Contact Us
+              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </NeoPopButton>
+          </Link>
         </div>
+      </div>
       </div>
       
       {/* Partners Section */}
-      <section className="py-12 sm:py-16 bg-black relative overflow-hidden">
+      <section className="py-16 bg-black relative overflow-hidden">
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 overflow-hidden opacity-5">
           <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,white,transparent_70%)]"></div>
         </div>
         
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="container mx-auto px-4 relative z-10">
           {/* Section Header */}
-          <div className="max-w-5xl mx-auto text-center mb-8 sm:mb-16">
-            <div className="flex flex-col text-center items-center mb-8 sm:mb-16">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1 sm:py-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-yellow-400 text-xs sm:text-sm font-medium uppercase tracking-wider mb-3 sm:mb-4">
+          <div className="max-w-5xl mx-auto text-center mb-16">
+            <div className="flex flex-col text-center items-center mb-16">
+              <div className="inline-flex items-center px-4 py-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-yellow-400 text-xs font-medium uppercase tracking-wider mb-4">
                 Our Network
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
                 Our <span className="text-yellow-400">Partners</span>
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 mt-3 sm:mt-4 max-w-3xl mx-auto px-2 sm:px-0">
+              <p className="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">
                 A network of ecosystem partners who help in creating more visibility and adding value to our community.
               </p>
             </div>
@@ -420,14 +404,14 @@ const EventsPage = () => {
           
           <PartnersGrid />
           
-          <div className="text-center mt-10 sm:mt-16">
+          <div className="text-center mt-16">
             <a 
               href="#contact" 
-              className="relative inline-flex items-center justify-center font-bold text-center uppercase tracking-wider whitespace-nowrap border-2 rounded transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed will-change-transform min-w-fit hover:-translate-y-0.5 hover:translate-x-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transform -translate-x-1 -translate-y-1 border-b-4 border-r-4 bg-[#FFD700] hover:bg-[#FFC000] active:bg-[#FFD700] text-gray-900 border-[#D4A017] px-4 sm:px-6 py-1.5 sm:py-2 text-base sm:text-lg group shadow-[3px_3px_0_0_rgba(0,0,0,0.9),5px_5px_0_0_rgba(0,0,0,0.5)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.9),4px_4px_0_0_rgba(0,0,0,0.5)] active:shadow-none sm:shadow-[4px_4px_0_0_rgba(0,0,0,0.9),6px_6px_0_0_rgba(0,0,0,0.5)] sm:hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.9),4px_4px_0_0_rgba(0,0,0,0.5)]"
+              className="relative inline-flex items-center justify-center font-bold text-center uppercase tracking-wider whitespace-nowrap border-2 rounded transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed will-change-transform min-w-fit hover:-translate-y-0.5 hover:translate-x-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none transform -translate-x-1 -translate-y-1 border-b-4 border-r-4 bg-[#FFD700] hover:bg-[#FFC000] active:bg-[#FFD700] text-gray-900 border-[#D4A017] px-6 py-2 text-lg group shadow-[4px_4px_0_0_rgba(0,0,0,0.9),6px_6px_0_0_rgba(0,0,0,0.5)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.9),4px_4px_0_0_rgba(0,0,0,0.5)] active:shadow-none"
             >
-              <span className="flex items-center text-sm sm:text-base">
+              <span className="flex items-center">
                 Become a Partner
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2 transform group-hover:translate-x-1 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
                 </svg>

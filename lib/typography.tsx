@@ -73,7 +73,7 @@ const variantClasses: Record<TypographyVariant, string> = {
   'text-info': 'text-blue-600 dark:text-blue-400',
 } as const;
 
-type ElementType = keyof JSX.IntrinsicElements;
+type ElementType = React.ElementType;
 
 interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   /** The variant of the typography */
@@ -101,7 +101,7 @@ export function Typography({
   const baseClasses = variantClasses[variant] || '';
   const classes = cn(baseClasses, className);
   
-  return React.createElement(Component, { className: classes, ...props }, children);
+  return React.createElement(Component as React.ElementType, { className: classes, ...props }, children);
 }
 
 /**

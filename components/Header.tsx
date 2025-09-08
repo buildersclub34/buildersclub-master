@@ -14,12 +14,21 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll effect
+  // Handle scroll effect with throttling
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 10);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
+    // Add passive event listener for better scrolling performance
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -70,7 +79,7 @@ export default function Header() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-7 xl:px-8 2xl:px-10 relative z-50">
-          <nav className="hidden lg:flex items-center justify-between w-full gap-4" role="navigation" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center justify-between w-full gap-4">
             {/* Logo */}
             <div className="flex-shrink-0 relative w-36 xl:w-40 h-12 xl:h-14">
               <Link href="/" className="block relative w-full h-full" aria-label="The Builders Club">
@@ -142,14 +151,14 @@ export default function Header() {
                 priority
               />
             </Link>
-            <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="relative z-50">
                 <NeoPopButton
                   as="link"
                   href="/auth/signin"
                   variant="primary"
                   size="sm"
-                  className="text-xs sm:text-sm px-3 sm:px-4"
+                  className="text-sm sm:text-base px-4 py-2.5 sm:px-5"
                   aria-label="Join"
                 >
                   Join
@@ -157,16 +166,22 @@ export default function Header() {
               </div>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-1.5 sm:p-2 rounded-lg hover:bg-white/10 active:bg-white/20 transition-all duration-200 active:scale-95 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                className="p-2.5 sm:p-3 rounded-lg hover:bg-white/10 active:bg-white/20 transition-all duration-200 active:scale-95 text-white touch-target"
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMenuOpen}
-                aria-haspopup="true"
                 aria-controls="mobile-menu"
+                style={{
+                  minWidth: '44px',
+                  minHeight: '44px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
               >
                 {isMenuOpen ? (
-                  <X size={20} className="text-white w-5 h-5 sm:w-6 sm:h-6" />
+                  <X size={24} className="text-white" />
                 ) : (
-                  <Menu size={20} className="text-white w-5 h-5 sm:w-6 sm:h-6" />
+                  <Menu size={24} className="text-white" />
                 )}
               </button>
             </div>
@@ -176,14 +191,17 @@ export default function Header() {
           <div 
             id="mobile-menu"
             ref={menuRef}
-            className={`lg:hidden fixed inset-0 z-40 h-screen w-full bg-gray-900 transform transition-all duration-300 ease-in-out ${
+            className={`lg:hidden fixed inset-0 z-40 h-[100dvh] w-full bg-gray-900/95 backdrop-blur-sm transform transition-all duration-300 ease-in-out ${
               isMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
             aria-hidden={!isMenuOpen}
-            tabIndex={isMenuOpen ? 0 : -1}
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain'
+            }}
           >
             {/* Header with close button */}
-            <div className="sticky top-0 z-50 flex items-center justify-between bg-gray-900/95 backdrop-blur-sm px-4 py-3 border-b border-gray-800">
+            <div className="sticky top-0 z-50 flex items-center justify-between bg-gray-900/95 backdrop-blur-sm px-5 py-3.5 border-b border-gray-800">
               <div className="relative h-10 w-32">
                 <Image 
                   src="/images/builders-club-logo.png" 
@@ -191,8 +209,7 @@ export default function Header() {
                   fill
                   sizes="128px"
                   className="object-contain object-left"
-                  loading={isMenuOpen ? 'eager' : 'lazy'}
-                  priority={false}
+                  priority
                 />
               </div>
               <button
@@ -210,10 +227,10 @@ export default function Header() {
                 <div key={item.name} className="relative group">
                   <a
                     href={item.link}
-                    className={`flex items-center justify-between w-full px-5 py-4 text-lg font-medium transition-all duration-200 rounded-xl active:scale-[0.98] ${
+                    className={`flex items-center justify-between w-full px-5 py-4 text-lg font-medium transition-all duration-200 rounded-xl ${
                       pathname === item.link 
                         ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 shadow-lg shadow-yellow-500/5' 
-                        : 'text-gray-200 hover:bg-gray-800/80 border border-transparent hover:border-gray-700/50 active:bg-gray-800/60'
+                        : 'text-gray-200 hover:bg-gray-800/80 border border-transparent hover:border-gray-700/50'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={pathname === item.link ? 'page' : undefined}

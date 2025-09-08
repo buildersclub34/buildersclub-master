@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { getUpcomingEvents, getPastEvents } from '@/data/events';
-import { EventCard } from '@/components/EventCard';
+import EventCard from '@/components/EventCard';
 import SectionHeader from './SectionHeader';
 
 type EventType = 'all' | 'investor-date' | 'conference' | 'networking' | 'board-meeting';

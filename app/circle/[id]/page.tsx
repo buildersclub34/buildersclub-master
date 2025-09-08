@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { circleBuilders } from '@/data/circleBuilders';
-import BuilderClient from '@/app/builders/[id]/BuilderClient';
+import BuilderClient from '../../builders/[id]/BuilderClient';
 
 export async function generateStaticParams() {
   return circleBuilders.map((builder) => ({

@@ -219,11 +219,7 @@ const TestimonialsCarousel = () => {
         {getCurrentTestimonials().map((testimonial, index) => (
           <div 
             key={testimonial.id} 
-            className="w-full"
-            style={{
-              animation: `fadeInUp 0.8s ease-out ${index * 0.2}s forwards`,
-              opacity: 0,
-            }}
+            className={`w-full fade-in-up delay-${index}`}
           >
             <div className="h-full bg-gradient-to-br from-gray-900/80 to-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-500/50 transition-all duration-300 h-full flex flex-col">
               <div className="flex-grow">
@@ -310,6 +306,27 @@ const TestimonialsCarousel = () => {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+        
+        .fade-in-up {
+          opacity: 0;
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .delay-0 {
+          animation-delay: 0s;
+        }
+        
+        .delay-1 {
+          animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+          animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+          animation-delay: 0.6s;
         }
       `}</style>
     </div>
